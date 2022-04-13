@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
 import Sidebar from './Sidebar';
 
 const MainLayout = () => {
@@ -17,14 +18,14 @@ const MainLayout = () => {
         </div>
       </aside>
       <main className={`bg-green-200 grow ${isSidebarOpen ? '' : '-ml-52'}`}>
-        <header className="bg-yellow-200">
+        <header className="bg-yellow-200 p-2">
           <div className="">
             <button
               type="button"
               onClick={() => setIsSidebarOpen((state) => !state)}
-              className="bg-white"
+              className=""
             >
-              Toggle
+              <FaBars size={24} />
             </button>
           </div>
         </header>
