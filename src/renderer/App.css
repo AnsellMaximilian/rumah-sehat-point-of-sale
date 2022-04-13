@@ -12,7 +12,11 @@
     @apply px-3 py-1 rounded-sm hover:opacity-90;
   }
   .btn-primary {
-    @apply btn bg-red-500 text-white font-semibold uppercase;
+    @apply btn bg-primary text-white font-semibold uppercase;
+  }
+
+  .btn-light {
+    @apply btn bg-primary-light border border-primary text-primary font-semibold;
   }
 
   .btn-secondary {

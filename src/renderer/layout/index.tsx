@@ -17,13 +17,13 @@ const MainLayout = () => {
           <Sidebar />
         </div>
       </aside>
-      <main className={`bg-green-200 grow ${isSidebarOpen ? '' : '-ml-52'}`}>
-        <header className="bg-yellow-200 p-2">
+      <main className={`grow ${isSidebarOpen ? '' : '-ml-52'}`}>
+        <header className="p-2 border-b border-gray-200">
           <div className="">
             <button
               type="button"
               onClick={() => setIsSidebarOpen((state) => !state)}
-              className=""
+              className="btn-light p-1"
             >
               <FaBars size={24} />
             </button>
