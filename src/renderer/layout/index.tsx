@@ -23,7 +23,7 @@ const MainLayout = () => {
             <button
               type="button"
               onClick={() => setIsSidebarOpen((state) => !state)}
-              className="btn-light p-1"
+              className="text-primary p-1"
             >
               <FaBars size={24} />
             </button>

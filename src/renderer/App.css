@@ -16,7 +16,7 @@
   }
 
   .btn-light {
-    @apply btn bg-primary-light text-primary font-semibold;
+    @apply btn bg-primary-light border border-primary text-primary font-semibold;
   }
 
   .btn-secondary {
