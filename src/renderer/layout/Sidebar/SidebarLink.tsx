@@ -10,7 +10,11 @@ const SidebarLink = ({ children, to }: Props) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => `block ${isActive ? 'btn-light' : 'btn'}`}
+      className={({ isActive }) =>
+        `block px-3 py-1 rounded-sm hover:text-primary hover:bg-primary-light ${
+          isActive ? 'bg-primary-light font-semibold text-primary' : ''
+        }`
+      }
     >
       {children}
     </NavLink>

@@ -2,9 +2,9 @@ import SidebarLink from './SidebarLink';
 
 const Sidebar = () => {
   return (
-    <div className="bg-red-200">
+    <div className="">
       <nav>
-        <ul>
+        <ul className="p-2 flex flex-col gap-1">
           <li>
             <SidebarLink to="/">Dashboard</SidebarLink>
           </li>

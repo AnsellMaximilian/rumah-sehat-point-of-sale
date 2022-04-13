@@ -12,15 +12,15 @@
     @apply px-3 py-1 rounded-sm hover:opacity-90;
   }
   .btn-primary {
-    @apply btn bg-primary text-white font-semibold uppercase;
+    @apply btn bg-primary text-white font-semibold;
   }
 
   .btn-light {
-    @apply btn bg-primary-light border border-primary text-primary font-semibold;
+    @apply btn bg-primary-light text-primary font-semibold;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-primary font-semibold uppercase hover:bg-gray-100;
+    @apply btn bg-white text-primary font-semibold hover:bg-gray-100;
   }
 
   .btn-danger {
