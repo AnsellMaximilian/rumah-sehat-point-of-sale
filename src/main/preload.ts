@@ -3,10 +3,10 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 contextBridge.exposeInMainWorld('electron', {
   store: {
     get(val: string) {
-      return ipcRenderer.sendSync('electron-store-get', val);
+      return ipcRenderer.sendSync('store-get', val);
     },
     set(property: string, val: string) {
-      ipcRenderer.send('electron-store-set', property, val);
+      ipcRenderer.send('store-set', property, val);
     },
     // Other method you want to add like has(), reset(), etc.
   },
