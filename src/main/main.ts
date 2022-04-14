@@ -15,6 +15,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import setupListeners from './listeners';
+import connectDatabase from './database';
 
 export default class AppUpdater {
   constructor() {
@@ -31,6 +32,9 @@ ipcMain.on('ipc-example', async (event, arg) => {
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
 });
+
+// Connect
+connectDatabase();
 
 // Setup listeners
 setupListeners();
