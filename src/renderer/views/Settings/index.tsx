@@ -1,22 +1,5 @@
-import { useEffect, useState } from 'react';
 import TextInput from 'renderer/components/TextInput';
-
-const useSettings = (key: string) => {
-  const [value, setValue] = useState<any | null>(null);
-  useEffect(() => {
-    setValue(window.electron.store.get(key));
-  }, [key]);
-
-  const save = () => {
-    window.electron.store.set(key, value);
-  };
-
-  return {
-    value,
-    setValue,
-    save,
-  };
-};
+import useSettings from 'renderer/hooks/useSettings';
 
 const Settings = () => {
   const appName = useSettings('app-name');
