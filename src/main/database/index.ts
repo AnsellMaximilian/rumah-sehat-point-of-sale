@@ -1,11 +1,11 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('rumah-sehat-pos', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql',
-});
-
 const connectDatabase = async () => {
+  const sequelize = new Sequelize('rumah-sehat-pos', 'root', '', {
+    host: 'localhost',
+    dialect: 'mysql',
+  });
+
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
