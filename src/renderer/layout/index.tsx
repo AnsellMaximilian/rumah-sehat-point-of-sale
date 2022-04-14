@@ -29,7 +29,7 @@ const MainLayout = () => {
             </button>
           </div>
         </header>
-        <div>
+        <div className="m-4">
           <Outlet />
         </div>
       </main>
