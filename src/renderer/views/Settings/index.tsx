@@ -1,17 +1,31 @@
 import { useEffect, useState } from 'react';
 import TextInput from 'renderer/components/TextInput';
 
-const Settings = () => {
-  const [appName, setAppName] = useState('');
-
+const useSettings = (key: string) => {
+  const [value, setValue] = useState<any | null>(null);
   useEffect(() => {
-    setAppName(window.electron.store.get('app-name') || '');
-  }, []);
+    setValue(window.electron.store.get(key));
+  }, [key]);
+
+  const save = () => {
+    window.electron.store.set(key, value);
+  };
+
+  return {
+    value,
+    setValue,
+    save,
+  };
+};
+
+const Settings = () => {
+  const appName = useSettings('app-name');
+  const dbUser = useSettings('db-user');
 
   const handleSave: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    const { set } = window.electron.store;
-    set('app-name', appName);
+    appName.save();
+    dbUser.save();
   };
 
   return (
@@ -28,8 +42,8 @@ const Settings = () => {
               id="app-name"
               placeholder="App Name"
               containerClassName="col-span-12 md:col-span-4"
-              value={appName}
-              onChange={(e) => setAppName(e.target.value)}
+              value={appName.value || ''}
+              onChange={(e) => appName.setValue(e.target.value)}
             />
           </div>
         </div>
@@ -49,6 +63,8 @@ const Settings = () => {
               id="db-user"
               placeholder="Database User"
               containerClassName="col-span-12 md:col-span-4"
+              value={dbUser.value || ''}
+              onChange={(e) => dbUser.setValue(e.target.value)}
             />
             <TextInput
               label="Database Port"
