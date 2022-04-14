@@ -4,10 +4,14 @@ import useSettings from 'renderer/hooks/useSettings';
 const Settings = () => {
   const appName = useSettings('app-name');
   const dbUser = useSettings('db-user');
+  const dbPort = useSettings('db-port');
+  const dbName = useSettings('db-name');
 
   const handleSave: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     appName.save();
+    dbName.save();
+    dbPort.save();
     dbUser.save();
   };
 
@@ -34,12 +38,14 @@ const Settings = () => {
           <h2 className="text-lg font-semibold pb-2 border-b-2 border-primary mb-2">
             Database
           </h2>
-          <div className="grid grid-cols-12">
+          <div className="grid grid-cols-12 gap-2">
             <TextInput
               label="Database Name"
               id="db-name"
               placeholder="Database Name"
               containerClassName="col-span-12 md:col-span-4"
+              value={dbName.value || ''}
+              onChange={(e) => dbName.setValue(e.target.value)}
             />
             <TextInput
               label="Database User"
@@ -54,11 +60,13 @@ const Settings = () => {
               id="db-port"
               placeholder="Database Port"
               containerClassName="col-span-12 md:col-span-4"
+              value={dbPort.value || ''}
+              onChange={(e) => dbPort.setValue(e.target.value)}
             />
           </div>
         </div>
-        <div>
-          <button type="submit" className="btn-primary">
+        <div className="flex">
+          <button type="submit" className="ml-auto btn-primary">
             Save Settings
           </button>
         </div>
