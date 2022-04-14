@@ -7,3 +7,6 @@ Made using Electron and React
 - [x] App settings
   - [x] Electron Store
   - [x] Custom Settings Hook
+- [ ] Database Integration
+  - [ ] Sequelize
+  - [ ] MySQL
