@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import TextInput from 'renderer/components/TextInput';
 import useSettings from 'renderer/hooks/useSettings';
 
@@ -13,6 +14,7 @@ const Settings = () => {
     dbName.save();
     dbPort.save();
     dbUser.save();
+    toast.success('Settings saved');
   };
 
   return (
