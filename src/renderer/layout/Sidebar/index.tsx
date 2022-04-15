@@ -1,6 +1,8 @@
 import { FaTachometerAlt } from 'react-icons/fa';
 import { BsGearFill } from 'react-icons/bs';
+import { GiMedicinePills } from 'react-icons/gi';
 import SidebarLink from './SidebarLink';
+import SidebarDropdown from './SidebarDropdown';
 
 const Sidebar = () => {
   return (
@@ -12,6 +14,18 @@ const Sidebar = () => {
               <FaTachometerAlt />
               <span>Dashboard</span>
             </SidebarLink>
+          </li>
+          <li>
+            <SidebarDropdown
+              trigger={
+                <div className="flex items-center gap-2">
+                  <GiMedicinePills />
+                  <span>Dr. Secret</span>
+                </div>
+              }
+            >
+              <SidebarLink to="/dr-secret/swag">Test</SidebarLink>
+            </SidebarDropdown>
           </li>
           <li>
             <SidebarLink to="/settings">
