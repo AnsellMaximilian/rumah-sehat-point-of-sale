@@ -1,17 +1,22 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize';
+import { initCustomer } from './models/Customer';
 
-const connectDatabase = async () => {
-  const sequelize = new Sequelize('rumah-sehat-pos', 'root', '', {
+export const connectDatabase = async () => {
+  const database = new Sequelize('rumah-sehat-pos', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
   });
 
   try {
-    await sequelize.authenticate();
+    await database.authenticate();
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
+
+  initCustomer(database);
+
+  return database;
 };
 
 export default connectDatabase;
