@@ -1,5 +1,5 @@
 import { FaTachometerAlt } from 'react-icons/fa';
-import { BsGearFill } from 'react-icons/bs';
+import { BsGearFill, BsPersonFill } from 'react-icons/bs';
 import { GiMedicinePills } from 'react-icons/gi';
 import SidebarLink from './SidebarLink';
 import SidebarDropdown from './SidebarDropdown';
@@ -13,6 +13,12 @@ const Sidebar = () => {
             <SidebarLink to="/">
               <FaTachometerAlt />
               <span>Dashboard</span>
+            </SidebarLink>
+          </li>
+          <li>
+            <SidebarLink to="/customers">
+              <BsPersonFill />
+              <span>Customers</span>
             </SidebarLink>
           </li>
           <li>

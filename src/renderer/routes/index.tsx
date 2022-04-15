@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import MainLayout from 'renderer/layout';
 import Settings from 'renderer/views/Settings';
+import CustomersView from 'renderer/views/Customers';
 
 const Routes = () => {
   return (
@@ -12,6 +13,7 @@ const Routes = () => {
       <RouteList>
         <Route path="/" element={<MainLayout />}>
           <Route path="/" element={<h1>TETS 1</h1>} />
+          <Route path="/customers" element={<CustomersView />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </RouteList>
