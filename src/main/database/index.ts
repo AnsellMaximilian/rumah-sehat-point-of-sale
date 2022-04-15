@@ -1,3 +1,4 @@
+import { dialog } from 'electron';
 import { Sequelize } from 'sequelize';
 import { initCustomer } from './models/Customer';
 
@@ -9,9 +10,15 @@ export const connectDatabase = async () => {
 
   try {
     await database.authenticate();
-    console.log('Connection has been established successfully.');
+    dialog.showMessageBox({
+      message: 'Database connection successful.',
+      type: 'info',
+    });
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    dialog.showErrorBox(
+      'Database connection failed.',
+      'Something went wrong while trying to connect to the database.'
+    );
   }
 
   initCustomer(database);
