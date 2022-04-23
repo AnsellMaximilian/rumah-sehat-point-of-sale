@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Customer from 'shared/types/Customer';
+import { FaTrash } from 'react-icons/fa';
 
 const CustomersView = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -33,6 +34,9 @@ const CustomersView = () => {
               <th className="uppercase font-medium text-left text-xs px-6 py-4">
                 Phone
               </th>
+              <th className="uppercase font-medium text-left text-xs px-6 py-4">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
@@ -49,6 +53,11 @@ const CustomersView = () => {
                 </td>
                 <td className="px-6 py-4 text-sm text-cool-gray-900">
                   {cus.phone}
+                </td>
+                <td className="px-6 py-4 text-sm text-cool-gray-900">
+                  <button type="button" className="btn-danger p-2">
+                    <FaTrash />
+                  </button>
                 </td>
               </tr>
             ))}
