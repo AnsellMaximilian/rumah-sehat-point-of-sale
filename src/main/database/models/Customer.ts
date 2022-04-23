@@ -1,33 +1,37 @@
-import { Model, DataTypes, Sequelize } from 'sequelize';
+import {
+  Model,
+  DataTypes,
+  Sequelize,
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes,
+} from 'sequelize';
 
-class Customer extends Model {}
+class Customer extends Model<
+  InferAttributes<Customer>,
+  InferCreationAttributes<Customer>
+> {
+  declare id: CreationOptional<number>;
 
-// Customer.init(
-//   {
-//     name: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
+  declare name: string;
 
-//     phone: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
+  declare phone: string;
 
-//     address: {
-//       type: DataTypes.TEXT,
-//       allowNull: true,
-//     },
-//   },
-//   {
-//     modelName: 'Customer',
-//     sequelize: database,
-//   }
-// );
+  declare address: string | null;
+
+  declare createdAt: CreationOptional<Date>;
+
+  declare updatedAt: CreationOptional<Date>;
+}
 
 export const initCustomer = (database: Sequelize) => {
   Customer.init(
     {
+      id: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -42,6 +46,8 @@ export const initCustomer = (database: Sequelize) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     },
     {
       modelName: 'Customer',

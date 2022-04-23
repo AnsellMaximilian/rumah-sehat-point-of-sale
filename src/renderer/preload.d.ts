@@ -1,3 +1,5 @@
+import Customer from 'shared/types/Customer';
+
 declare global {
   interface Window {
     electron: {
@@ -13,6 +15,9 @@ declare global {
           func: (...args: unknown[]) => void
         ): (() => void) | undefined;
         once(channel: string, func: (...args: unknown[]) => void): void;
+      };
+      customers: {
+        read(): Promise<Customer>;
       };
     };
   }

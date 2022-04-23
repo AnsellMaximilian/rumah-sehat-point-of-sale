@@ -1,4 +1,16 @@
+import { useEffect, useState } from 'react';
+
 const CustomersView = () => {
+  const [customers, setCustomers] = useState([]);
+  useEffect(() => {
+    window.electron.customers
+      .read()
+      .then((cus) => {
+        console.log(cus);
+        return cus;
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div>
       <div className="flex justify-between">

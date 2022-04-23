@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
+import Customer from 'shared/types/Customer';
 
 contextBridge.exposeInMainWorld('electron', {
   store: {
@@ -33,6 +34,11 @@ contextBridge.exposeInMainWorld('electron', {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.once(channel, (_event, ...args) => func(...args));
       }
+    },
+  },
+  customers: {
+    read(): Promise<Customer> {
+      return ipcRenderer.invoke('customers:read');
     },
   },
 });
