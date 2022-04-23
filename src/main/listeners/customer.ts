@@ -17,13 +17,14 @@ const setUpCustomerListeners = () => {
     return customers;
   });
 
-  ipcMain.handle('customers:delete', async (_event, id: number) => {
+  ipcMain.handle('customers:delete', async (event, id: number) => {
     try {
       Customer.destroy({
         where: {
           id,
         },
       });
+      event.sender.send('notify', `Customer of ID ${id} deleted.`, 'success');
       return true;
     } catch (error) {
       return false;
