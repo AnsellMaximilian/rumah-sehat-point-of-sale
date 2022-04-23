@@ -19,21 +19,23 @@ const useToastNotification = () => {
   }, []);
 
   useEffect(() => {
-    switch (notification.message) {
-      case 'success':
-        toast.success(notification.message);
-        break;
-      case 'error':
-        toast.error(notification.message);
-        break;
-      case 'warning':
-        toast.warning(notification.message);
-        break;
-      default:
-        toast(notification.message);
-        break;
+    if (notification.message) {
+      switch (notification.type) {
+        case 'success':
+          toast.success(notification.message);
+          break;
+        case 'error':
+          toast.error(notification.message);
+          break;
+        case 'warning':
+          toast.warning(notification.message);
+          break;
+        default:
+          toast(notification.message);
+          break;
+      }
     }
-  }, [notification.message]);
+  }, [notification.type, notification.message]);
 };
 
 export default useToastNotification;
