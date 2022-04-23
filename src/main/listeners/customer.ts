@@ -3,7 +3,7 @@ import Customer from '../database/models/Customer';
 import CustomerInterface from '../../shared/types/Customer';
 
 const setUpCustomerListeners = () => {
-  ipcMain.handle('customers:read', async (e) => {
+  ipcMain.handle('customers:read', async () => {
     const customers: CustomerInterface[] = (await Customer.findAll()).map(
       (cus) => ({
         name: cus.name,
