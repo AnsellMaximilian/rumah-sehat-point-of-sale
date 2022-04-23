@@ -11,7 +11,7 @@ const CustomersView = () => {
   }, []);
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-4">
         <h1 className="text-xl font-bold">Customers</h1>
         <button type="button" className="btn-primary">
           Create
