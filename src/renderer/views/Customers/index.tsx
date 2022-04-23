@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Customer from 'shared/types/Customer';
 import { FaTrash } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const CustomersView = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -10,6 +11,23 @@ const CustomersView = () => {
       setCustomers(allCustomers);
     })();
   }, []);
+
+  const deleteCustomer = async (id: number) => {
+    const confirmation = await Swal.fire({
+      title: 'Warning!',
+      text: 'Are you sure?',
+      icon: 'warning',
+      confirmButtonText: 'Yes',
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#b51919',
+    });
+
+    if (confirmation.isConfirmed) {
+      await window.electron.customers.delete(id);
+    }
+  };
+
   return (
     <div>
       <div className="flex justify-between mb-4">
@@ -55,7 +73,11 @@ const CustomersView = () => {
                   {cus.phone}
                 </td>
                 <td className="px-6 py-4 text-sm text-cool-gray-900">
-                  <button type="button" className="btn-danger p-2">
+                  <button
+                    type="button"
+                    className="btn-danger p-2"
+                    onClick={() => deleteCustomer(cus.id)}
+                  >
                     <FaTrash />
                   </button>
                 </td>

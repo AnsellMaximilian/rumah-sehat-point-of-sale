@@ -16,6 +16,19 @@ const setUpCustomerListeners = () => {
     );
     return customers;
   });
+
+  ipcMain.handle('customers:delete', async (_event, id: number) => {
+    try {
+      Customer.destroy({
+        where: {
+          id,
+        },
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  });
 };
 
 export default setUpCustomerListeners;

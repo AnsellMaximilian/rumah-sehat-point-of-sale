@@ -40,5 +40,8 @@ contextBridge.exposeInMainWorld('electron', {
     read(): Promise<Customer[]> {
       return ipcRenderer.invoke('customers:read');
     },
+    delete(id: number): Promise<boolean> {
+      return ipcRenderer.invoke('customers:delete', id);
+    },
   },
 });

@@ -18,6 +18,7 @@ declare global {
       };
       customers: {
         read(): Promise<Customer[]>;
+        delete(id: number): Promise<boolean>;
       };
     };
   }
