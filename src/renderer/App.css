@@ -7,6 +7,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-gray-100;
+}
+
 @layer components {
   .btn {
     @apply px-3 py-1 rounded-sm hover:opacity-90 active:scale-95;
