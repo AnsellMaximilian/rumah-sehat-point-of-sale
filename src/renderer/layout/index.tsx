@@ -8,9 +8,9 @@ const MainLayout = () => {
 
   return (
     <div className="flex">
-      <aside className="w-52 bg-white">
+      <aside className="w-52">
         <div
-          className={`fixed h-full w-52 transition-all duration-100 ${
+          className={`fixed h-full w-52 transition-all duration-100 bg-white ${
             isSidebarOpen ? '' : '-translate-x-52'
           }`}
         >
