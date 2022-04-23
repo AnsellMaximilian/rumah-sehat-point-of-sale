@@ -1,4 +1,4 @@
-import Customer from 'shared/types/Customer';
+import Customer from '../shared/types/Customer';
 
 declare global {
   interface Window {
@@ -17,7 +17,7 @@ declare global {
         once(channel: string, func: (...args: unknown[]) => void): void;
       };
       customers: {
-        read(): Promise<Customer>;
+        read(): Promise<Customer[]>;
       };
     };
   }

@@ -37,7 +37,7 @@ contextBridge.exposeInMainWorld('electron', {
     },
   },
   customers: {
-    read(): Promise<Customer> {
+    read(): Promise<Customer[]> {
       return ipcRenderer.invoke('customers:read');
     },
   },
