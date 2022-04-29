@@ -34,6 +34,7 @@ const CustomersView = () => {
 
   const createCustomer = async (customerData: CustomerCreateData) => {
     await window.electron.customers.create(customerData);
+    setIsCreateModalOpen(false);
     setCustomers(await window.electron.customers.read());
   };
 
