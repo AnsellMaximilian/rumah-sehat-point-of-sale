@@ -28,11 +28,13 @@ const CustomersView = () => {
 
     if (confirmation.isConfirmed) {
       await window.electron.customers.delete(id);
+      setCustomers(await window.electron.customers.read());
     }
   };
 
   const createCustomer = async (customerData: CustomerCreateData) => {
     await window.electron.customers.create(customerData);
+    setCustomers(await window.electron.customers.read());
   };
 
   return (
