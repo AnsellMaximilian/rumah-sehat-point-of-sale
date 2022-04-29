@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import Customer from 'shared/types/Customer';
 import Swal from 'sweetalert2';
 import Table from './Table';
+import CreateForm from './CreateForm';
 
 const CustomersView = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -51,7 +52,7 @@ const CustomersView = () => {
           content: { padding: 0, border: 'none' },
         }}
       >
-        Test
+        <CreateForm />
       </Modal>
     </div>
   );
