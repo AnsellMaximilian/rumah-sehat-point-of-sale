@@ -1,16 +1,32 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import TextInput from 'renderer/components/TextInput';
+import { CustomerCreateData } from 'shared/types/Customer';
 
-const CreateForm = () => {
+interface Props {
+  createCustomer: (customerData: CustomerCreateData) => Promise<void>;
+}
+
+const CreateForm = ({ createCustomer }: Props) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    if (!name || !phone) {
+      toast.error('Name or phone cannot be empty.');
+    } else {
+      createCustomer({ name, phone, address });
+    }
+  };
+
   return (
     <article>
       <header>
         <h1>Create Customer</h1>
       </header>
-      <form>
+      <form onSubmit={onSubmit}>
         <TextInput
           label="Name"
           id="customer-name"

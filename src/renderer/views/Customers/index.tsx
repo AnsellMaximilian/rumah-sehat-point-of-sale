@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import Customer from 'shared/types/Customer';
+import Customer, { CustomerCreateData } from 'shared/types/Customer';
 import Swal from 'sweetalert2';
 import Table from './Table';
 import CreateForm from './CreateForm';
@@ -31,6 +31,10 @@ const CustomersView = () => {
     }
   };
 
+  const createCustomer = async (customerData: CustomerCreateData) => {
+    await window.electron.customers.create(customerData);
+  };
+
   return (
     <div>
       <div className="flex justify-between mb-4">
@@ -52,7 +56,7 @@ const CustomersView = () => {
           content: { padding: 0, border: 'none' },
         }}
       >
-        <CreateForm />
+        <CreateForm createCustomer={createCustomer} />
       </Modal>
     </div>
   );
