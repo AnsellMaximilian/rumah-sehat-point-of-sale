@@ -8,7 +8,7 @@ const MainLayout = () => {
 
   return (
     <div className="flex">
-      <aside className="w-52">
+      <aside className="">
         <div
           className={`fixed h-full w-52 transition-all duration-100 bg-white ${
             isSidebarOpen ? '' : '-translate-x-52'
@@ -17,7 +17,7 @@ const MainLayout = () => {
           <Sidebar />
         </div>
       </aside>
-      <main className={`grow ${isSidebarOpen ? '' : '-ml-52'}`}>
+      <main className={`grow ${isSidebarOpen ? 'ml-52' : ''}`}>
         <header className="p-2 border-b border-gray-200 bg-white">
           <div className="">
             <button
