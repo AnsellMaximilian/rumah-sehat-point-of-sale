@@ -37,12 +37,13 @@ const setUpCustomerListeners = () => {
     'customers:create',
     async (event, customerData: CustomerCreateData) => {
       try {
-        Customer.build(customerData);
+        const newCustomer = Customer.build(customerData);
         event.sender.send(
           'notify',
           `Customer "${customerData.name}" successfully created`,
           'success'
         );
+        newCustomer.save();
         return true;
       } catch (error) {
         return false;
