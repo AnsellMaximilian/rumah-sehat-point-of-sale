@@ -1,4 +1,4 @@
-import Customer from '../shared/types/Customer';
+import Customer, { CustomerCreateData } from '../shared/types/Customer';
 
 declare global {
   interface Window {
@@ -19,6 +19,7 @@ declare global {
       customers: {
         read(): Promise<Customer[]>;
         delete(id: number): Promise<boolean>;
+        create(customerData: CustomerCreateData): Promise<boolean>;
       };
     };
   }

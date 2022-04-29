@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
-import Customer from 'shared/types/Customer';
+import Customer, { CustomerCreateData } from 'shared/types/Customer';
 
 contextBridge.exposeInMainWorld('electron', {
   store: {
@@ -42,6 +42,9 @@ contextBridge.exposeInMainWorld('electron', {
     },
     delete(id: number): Promise<boolean> {
       return ipcRenderer.invoke('customers:delete', id);
+    },
+    create(customerData: CustomerCreateData): Promise<boolean> {
+      return ipcRenderer.invoke('customers:create', customerData);
     },
   },
 });

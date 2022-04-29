@@ -7,9 +7,17 @@ interface Customer {
 
   address: string | null;
 
-  createdAt: Date;
+  createdAt?: Date;
 
-  updatedAt: Date;
+  updatedAt?: Date;
+}
+
+export interface CustomerCreateData {
+  name: string;
+
+  phone: string;
+
+  address?: string;
 }
 
 export default Customer;

@@ -1,6 +1,8 @@
 import { ipcMain } from 'electron';
 import Customer from '../database/models/Customer';
-import CustomerInterface from '../../shared/types/Customer';
+import CustomerInterface, {
+  CustomerCreateData,
+} from '../../shared/types/Customer';
 
 const setUpCustomerListeners = () => {
   ipcMain.handle('customers:read', async () => {
@@ -30,6 +32,23 @@ const setUpCustomerListeners = () => {
       return false;
     }
   });
+
+  ipcMain.handle(
+    'customers:create',
+    async (event, customerData: CustomerCreateData) => {
+      try {
+        Customer.build(customerData);
+        event.sender.send(
+          'notify',
+          `Customer "${customerData.name}" successfully created`,
+          'success'
+        );
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+  );
 };
 
 export default setUpCustomerListeners;
