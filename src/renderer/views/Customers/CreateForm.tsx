@@ -42,7 +42,7 @@ const CreateForm = ({ createCustomer }: Props) => {
           onChange={(e) => setPhone(e.target.value)}
         />
         <TextInput
-          label="Phone"
+          label="Address"
           id="customer-address"
           placeholder="Customer Address"
           textarea
