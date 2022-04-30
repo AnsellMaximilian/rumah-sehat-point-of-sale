@@ -23,10 +23,10 @@ const CreateForm = ({ createCustomer }: Props) => {
 
   return (
     <article>
-      <header>
-        <h1>Create Customer</h1>
+      <header className="bg-primary text-white p-4">
+        <h1 className="text-xl">Create Customer</h1>
       </header>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="p-4">
         <TextInput
           label="Name"
           id="customer-name"
@@ -41,14 +41,18 @@ const CreateForm = ({ createCustomer }: Props) => {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
+        <TextInput
+          label="Phone"
+          id="customer-address"
+          placeholder="Customer Address"
+          textarea
+          value={address}
+          onChangeTextArea={(e) => setAddress(e.target.value)}
+        />
         <div>
-          <textarea
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
-        <div>
-          <button type="submit">Create</button>
+          <button type="submit" className="btn-primary">
+            Create
+          </button>
         </div>
       </form>
     </article>

@@ -6,6 +6,8 @@ interface Props {
   containerClassName?: string | undefined;
   inputClassName?: string | undefined;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  onChangeTextArea?: React.ChangeEventHandler<HTMLTextAreaElement>;
+  textarea?: boolean;
 }
 
 const TextInput = ({
@@ -16,6 +18,8 @@ const TextInput = ({
   onChange,
   containerClassName,
   inputClassName,
+  textarea,
+  onChangeTextArea,
 }: Props) => {
   return (
     <div className={containerClassName}>
@@ -25,22 +29,34 @@ const TextInput = ({
       >
         {label}
       </label>
-      <input
-        className={`${inputClassName} focus:ring-1 ring-primary outline-none px-2 py-1 rounded-sm min-w-0 border border-gray-300`}
-        placeholder={placeholder}
-        id={id}
-        onChange={onChange}
-        value={value}
-      />
+      {textarea ? (
+        <textarea
+          className={`${inputClassName} focus:ring-1 ring-primary outline-none px-2 py-1 rounded-sm min-w-0 border border-gray-300`}
+          placeholder={placeholder}
+          id={id}
+          onChange={onChangeTextArea}
+          value={value}
+        />
+      ) : (
+        <input
+          className={`${inputClassName} focus:ring-1 ring-primary outline-none px-2 py-1 rounded-sm min-w-0 border border-gray-300`}
+          placeholder={placeholder}
+          id={id}
+          onChange={onChange}
+          value={value}
+        />
+      )}
     </div>
   );
 };
 
 TextInput.defaultProps = {
   onChange: undefined,
+  onChangeTextArea: undefined,
   value: undefined,
   containerClassName: undefined,
   inputClassName: undefined,
+  textarea: false,
 };
 
 export default TextInput;
