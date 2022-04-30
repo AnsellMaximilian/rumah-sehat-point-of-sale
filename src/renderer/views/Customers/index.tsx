@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Modal from 'react-modal';
 import Customer, { CustomerCreateData } from 'shared/types/Customer';
 import Swal from 'sweetalert2';
+import Modal from 'renderer/components/Modal';
 import Table from './Table';
 import CreateForm from './CreateForm';
 
@@ -54,10 +54,6 @@ const CustomersView = () => {
       <Modal
         isOpen={isCreateModalOpen}
         onRequestClose={() => setIsCreateModalOpen(false)}
-        style={{
-          overlay: { backgroundColor: 'rgba(0, 0, 0, 0.6)' },
-          content: { padding: 0, border: 'none' },
-        }}
       >
         <CreateForm createCustomer={createCustomer} />
       </Modal>
