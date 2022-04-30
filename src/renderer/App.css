@@ -34,4 +34,8 @@ body {
   .btn-danger {
     @apply btn bg-red-600 text-white font-semibold uppercase;
   }
+
+  .btn-warning {
+    @apply btn bg-yellow-400 text-white font-semibold uppercase;
+  }
 }

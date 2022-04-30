@@ -1,4 +1,4 @@
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaPenSquare } from 'react-icons/fa';
 import Customer from 'shared/types/Customer';
 
 const Table = ({
@@ -50,6 +50,13 @@ const Table = ({
                   onClick={() => deleteCustomer(cus.id)}
                 >
                   <FaTrash />
+                </button>
+                <button
+                  type="button"
+                  className="btn-warning p-2 ml-2"
+                  onClick={() => deleteCustomer(cus.id)}
+                >
+                  <FaPenSquare />
                 </button>
               </td>
             </tr>
