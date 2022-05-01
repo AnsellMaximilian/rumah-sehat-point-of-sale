@@ -20,6 +20,7 @@ declare global {
         read(): Promise<Customer[]>;
         delete(id: number): Promise<boolean>;
         create(customerData: CustomerCreateData): Promise<boolean>;
+        update(id: number, customerData: CustomerCreateData): Promise<boolean>;
       };
     };
   }

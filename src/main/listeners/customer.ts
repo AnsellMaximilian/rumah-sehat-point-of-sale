@@ -50,6 +50,27 @@ const setUpCustomerListeners = () => {
       }
     }
   );
+
+  ipcMain.handle(
+    'customers:edit',
+    async (event, id: number, customerData: CustomerCreateData) => {
+      try {
+        Customer.update(customerData, {
+          where: {
+            id,
+          },
+        });
+        event.sender.send(
+          'notify',
+          `Customer of ID "${customerData.name}" updated`,
+          'success'
+        );
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+  );
 };
 
 export default setUpCustomerListeners;

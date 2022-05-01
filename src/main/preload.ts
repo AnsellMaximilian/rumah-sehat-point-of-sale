@@ -46,5 +46,8 @@ contextBridge.exposeInMainWorld('electron', {
     create(customerData: CustomerCreateData): Promise<boolean> {
       return ipcRenderer.invoke('customers:create', customerData);
     },
+    update(id: number, customerData: CustomerCreateData): Promise<boolean> {
+      return ipcRenderer.invoke('customers:edit', id, customerData);
+    },
   },
 });

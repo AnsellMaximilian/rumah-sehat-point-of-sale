@@ -38,6 +38,15 @@ const CustomersView = () => {
     setCustomers(await window.electron.customers.read());
   };
 
+  const updateCustomer = async (
+    id: number,
+    customerData: CustomerCreateData
+  ) => {
+    await window.electron.customers.update(id, customerData);
+    setIsCreateModalOpen(false);
+    setCustomers(await window.electron.customers.read());
+  };
+
   return (
     <div>
       <div className="flex justify-between mb-4">
