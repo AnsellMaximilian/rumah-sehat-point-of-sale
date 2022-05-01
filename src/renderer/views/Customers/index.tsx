@@ -55,6 +55,10 @@ const CustomersView = () => {
         isOpen={isCreateModalOpen}
         onRequestClose={() => setIsCreateModalOpen(false)}
       >
+        <Modal.Header
+          label="Create Customer"
+          closeModal={() => setIsCreateModalOpen(false)}
+        />
         <Form createCustomer={createCustomer} />
       </Modal>
     </div>

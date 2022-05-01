@@ -23,9 +23,6 @@ const Form = ({ createCustomer }: Props) => {
 
   return (
     <article>
-      <header className="bg-primary text-white p-4">
-        <h1 className="text-xl">Create Customer</h1>
-      </header>
       <form onSubmit={onSubmit} className="p-4">
         <TextInput
           label="Name"
