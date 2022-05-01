@@ -1,5 +1,7 @@
 import React from 'react';
 import BaseModal from 'react-modal';
+import PropTypes from 'prop-types';
+import Header, { ModalHeaderProps } from './Header';
 
 interface Props {
   isOpen: boolean;
@@ -9,7 +11,15 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Modal = ({ isOpen, onRequestClose, children }: Props) => {
+interface ModalComposition {
+  Header: React.FC<ModalHeaderProps>;
+}
+
+const Modal: React.FC<Props> & ModalComposition = ({
+  isOpen,
+  onRequestClose,
+  children,
+}) => {
   return (
     <BaseModal
       isOpen={isOpen}
@@ -24,8 +34,17 @@ const Modal = ({ isOpen, onRequestClose, children }: Props) => {
   );
 };
 
+Modal.Header = Header;
+
 Modal.defaultProps = {
   onRequestClose: undefined,
+  children: undefined,
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func,
+  children: PropTypes.node,
 };
 
 export default Modal;
