@@ -23,11 +23,13 @@ const Form = ({ createCustomer }: Props) => {
 
   return (
     <article>
-      <form onSubmit={onSubmit} className="p-4">
+      <form onSubmit={onSubmit} className="p-4 grid grid-cols-12 gap-2">
         <TextInput
           label="Name"
           id="customer-name"
           placeholder="Customer Name"
+          containerClassName="col-span-6"
+          inputClassName="w-full"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -35,6 +37,8 @@ const Form = ({ createCustomer }: Props) => {
           label="Phone"
           id="customer-phone"
           placeholder="Customer Phone Number"
+          containerClassName="col-span-6"
+          inputClassName="w-full"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
@@ -42,12 +46,14 @@ const Form = ({ createCustomer }: Props) => {
           label="Address"
           id="customer-address"
           placeholder="Customer Address"
+          containerClassName="col-span-12"
+          inputClassName="w-full"
           textarea
           value={address}
           onChangeTextArea={(e) => setAddress(e.target.value)}
         />
-        <div>
-          <button type="submit" className="btn-primary">
+        <div className="flex col-span-12">
+          <button type="submit" className="btn-primary ml-auto">
             Create
           </button>
         </div>
