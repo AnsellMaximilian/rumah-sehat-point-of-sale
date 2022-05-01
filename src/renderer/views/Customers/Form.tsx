@@ -7,7 +7,7 @@ interface Props {
   createCustomer: (customerData: CustomerCreateData) => Promise<void>;
 }
 
-const CreateForm = ({ createCustomer }: Props) => {
+const Form = ({ createCustomer }: Props) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -59,4 +59,4 @@ const CreateForm = ({ createCustomer }: Props) => {
   );
 };
 
-export default CreateForm;
+export default Form;

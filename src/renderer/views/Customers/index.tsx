@@ -3,7 +3,7 @@ import Customer, { CustomerCreateData } from 'shared/types/Customer';
 import Swal from 'sweetalert2';
 import Modal from 'renderer/components/Modal';
 import Table from './Table';
-import CreateForm from './CreateForm';
+import Form from './Form';
 
 const CustomersView = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -55,7 +55,7 @@ const CustomersView = () => {
         isOpen={isCreateModalOpen}
         onRequestClose={() => setIsCreateModalOpen(false)}
       >
-        <CreateForm createCustomer={createCustomer} />
+        <Form createCustomer={createCustomer} />
       </Modal>
     </div>
   );
