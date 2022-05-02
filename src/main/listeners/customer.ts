@@ -62,7 +62,7 @@ const setUpCustomerListeners = () => {
         });
         event.sender.send(
           'notify',
-          `Customer of ID "${customerData.name}" updated`,
+          `Customer of ID "${id}" updated`,
           'success'
         );
         return true;
