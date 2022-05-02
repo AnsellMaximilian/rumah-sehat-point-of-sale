@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Customer, { CustomerCreateData } from 'shared/types/Customer';
-import Swal from 'sweetalert2';
 import Modal from 'renderer/components/Modal';
+import confirm from 'renderer/util/confirm';
 import Table from './Table';
 import Form from './Form';
 
@@ -24,20 +24,10 @@ const CustomersView = () => {
   }, [isModalOpen]);
 
   const deleteCustomer = async (id: number) => {
-    const confirmation = await Swal.fire({
-      title: 'Warning!',
-      text: 'Are you sure?',
-      icon: 'warning',
-      confirmButtonText: 'Yes',
-      showCancelButton: true,
-      cancelButtonText: 'Cancel',
-      confirmButtonColor: '#b51919',
-    });
-
-    if (confirmation.isConfirmed) {
+    confirm('Are you sure?', async () => {
       await window.electron.customers.delete(id);
       setCustomers(await window.electron.customers.read());
-    }
+    });
   };
 
   const createCustomer = async (customerData: CustomerCreateData) => {
