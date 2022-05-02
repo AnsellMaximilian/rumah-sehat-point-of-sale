@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Customer, { CustomerCreateData } from 'shared/types/Customer';
 import Modal from 'renderer/components/Modal';
-import confirm from 'renderer/util/confirm';
+import confirm from 'renderer/utils/confirm';
 import Table from './Table';
 import Form from './Form';
 
