@@ -69,7 +69,7 @@ const Form = ({ createCustomer, updateCustomer, customerToEdit }: Props) => {
         />
         <div className="flex col-span-12">
           <button type="submit" className="btn-primary ml-auto">
-            Create
+            {customerToEdit ? 'Update' : 'Create'}
           </button>
         </div>
       </form>

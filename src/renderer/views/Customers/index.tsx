@@ -79,7 +79,11 @@ const CustomersView = () => {
       />
       <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
         <Modal.Header
-          label="Create Customer"
+          label={
+            customerToEdit
+              ? `Edit Customer of ID ${customerToEdit.id}`
+              : 'Create Customer'
+          }
           closeModal={() => setIsModalOpen(false)}
         />
         <Form
