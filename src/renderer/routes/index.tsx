@@ -15,6 +15,7 @@ const Routes = () => {
           <Route path="/" element={<h1>TETS 1</h1>} />
           <Route path="/customers" element={<CustomersView />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/dr-secret/products" element={<Settings />} />
         </Route>
       </RouteList>
     </Router>
