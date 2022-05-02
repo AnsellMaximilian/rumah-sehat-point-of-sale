@@ -7,13 +7,21 @@ import Form from './Form';
 
 const CustomersView = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customerToEdit, setCustomerToEdit] = useState<Customer | undefined>(
+    undefined
+  );
+
   useEffect(() => {
     (async () => {
       const allCustomers = await window.electron.customers.read();
       setCustomers(allCustomers);
     })();
   }, []);
+
+  useEffect(() => {
+    if (!isModalOpen) setCustomerToEdit(undefined);
+  }, [isModalOpen]);
 
   const deleteCustomer = async (id: number) => {
     const confirmation = await Swal.fire({
@@ -34,8 +42,13 @@ const CustomersView = () => {
 
   const createCustomer = async (customerData: CustomerCreateData) => {
     await window.electron.customers.create(customerData);
-    setIsCreateModalOpen(false);
+    setIsModalOpen(false);
     setCustomers(await window.electron.customers.read());
+  };
+
+  const editCustomer = (customer: Customer) => {
+    setCustomerToEdit(customer);
+    setIsModalOpen(true);
   };
 
   const updateCustomer = async (
@@ -43,7 +56,7 @@ const CustomersView = () => {
     customerData: CustomerCreateData
   ) => {
     await window.electron.customers.update(id, customerData);
-    setIsCreateModalOpen(false);
+    setIsModalOpen(false);
     setCustomers(await window.electron.customers.read());
   };
 
@@ -54,21 +67,26 @@ const CustomersView = () => {
         <button
           type="button"
           className="btn-primary"
-          onClick={() => setIsCreateModalOpen(true)}
+          onClick={() => setIsModalOpen(true)}
         >
           Create
         </button>
       </div>
-      <Table customers={customers} deleteCustomer={deleteCustomer} />
-      <Modal
-        isOpen={isCreateModalOpen}
-        onRequestClose={() => setIsCreateModalOpen(false)}
-      >
+      <Table
+        customers={customers}
+        deleteCustomer={deleteCustomer}
+        editCustomer={editCustomer}
+      />
+      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
         <Modal.Header
           label="Create Customer"
-          closeModal={() => setIsCreateModalOpen(false)}
+          closeModal={() => setIsModalOpen(false)}
         />
-        <Form createCustomer={createCustomer} />
+        <Form
+          createCustomer={createCustomer}
+          customerToEdit={customerToEdit}
+          updateCustomer={updateCustomer}
+        />
       </Modal>
     </div>
   );

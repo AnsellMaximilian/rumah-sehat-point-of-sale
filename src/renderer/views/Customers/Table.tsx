@@ -1,13 +1,13 @@
 import { FaTrash, FaPenSquare } from 'react-icons/fa';
 import Customer from 'shared/types/Customer';
 
-const Table = ({
-  customers,
-  deleteCustomer,
-}: {
+interface Props {
   customers: Customer[];
   deleteCustomer: (id: number) => void;
-}) => {
+  editCustomer: (customer: Customer) => void;
+}
+
+const Table = ({ customers, deleteCustomer, editCustomer }: Props) => {
   return (
     <div>
       <table className="min-w-full divide-y divide-gray-200 shadow rounded-lg">
@@ -54,7 +54,7 @@ const Table = ({
                 <button
                   type="button"
                   className="btn-warning p-2 ml-2"
-                  onClick={() => deleteCustomer(cus.id)}
+                  onClick={() => editCustomer(cus)}
                 >
                   <FaPenSquare />
                 </button>

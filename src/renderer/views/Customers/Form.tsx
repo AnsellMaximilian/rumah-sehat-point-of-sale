@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import TextInput from 'renderer/components/TextInput';
-import { CustomerCreateData } from 'shared/types/Customer';
+import Customer, { CustomerCreateData } from 'shared/types/Customer';
 
 interface Props {
-  createCustomer: (customerData: CustomerCreateData) => Promise<void>;
+  createCustomer?: (customerToEdit: CustomerCreateData) => Promise<void>;
+  updateCustomer?: (
+    id: number,
+    customerData: CustomerCreateData
+  ) => Promise<void>;
+  customerToEdit?: Customer;
 }
 
-const Form = ({ createCustomer }: Props) => {
+const Form = ({ createCustomer, updateCustomer, customerToEdit }: Props) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -16,10 +21,20 @@ const Form = ({ createCustomer }: Props) => {
     e.preventDefault();
     if (!name || !phone) {
       toast.error('Name or phone cannot be empty.');
-    } else {
+    } else if (updateCustomer && customerToEdit) {
+      updateCustomer(customerToEdit.id, { name, phone, address });
+    } else if (createCustomer) {
       createCustomer({ name, phone, address });
     }
   };
+
+  useEffect(() => {
+    if (customerToEdit) {
+      setName(customerToEdit.name);
+      setAddress(customerToEdit.address || '');
+      setPhone(customerToEdit.phone);
+    }
+  }, [customerToEdit]);
 
   return (
     <article>
@@ -60,6 +75,12 @@ const Form = ({ createCustomer }: Props) => {
       </form>
     </article>
   );
+};
+
+Form.defaultProps = {
+  customerToEdit: undefined,
+  updateCustomer: undefined,
+  createCustomer: undefined,
 };
 
 export default Form;
