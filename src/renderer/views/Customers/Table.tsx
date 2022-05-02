@@ -43,7 +43,7 @@ const Table = ({ customers, deleteCustomer, editCustomer }: Props) => {
               <td className="px-6 py-4 text-sm text-cool-gray-900">
                 {cus.phone}
               </td>
-              <td className="px-6 py-4 text-sm text-cool-gray-900">
+              <td className="px-6 py-4 text-sm text-cool-gray-900 flex gap-2">
                 <button
                   type="button"
                   className="btn-danger p-2"
@@ -53,7 +53,7 @@ const Table = ({ customers, deleteCustomer, editCustomer }: Props) => {
                 </button>
                 <button
                   type="button"
-                  className="btn-warning p-2 ml-2"
+                  className="btn-warning p-2"
                   onClick={() => editCustomer(cus)}
                 >
                   <FaPenSquare />
