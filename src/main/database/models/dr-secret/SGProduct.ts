@@ -40,17 +40,17 @@ export const initDrSecretSGProduct = (database: Sequelize) => {
       },
 
       priceSGD: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
 
       points: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
 
       deliveryFee: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
 
