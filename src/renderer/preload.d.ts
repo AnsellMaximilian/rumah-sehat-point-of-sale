@@ -1,3 +1,6 @@
+import DrSecretSGProduct, {
+  DrSecretSGProductCreateData,
+} from 'shared/types/dr-secret/DrSecretSGProduct';
 import Customer, { CustomerCreateData } from '../shared/types/Customer';
 
 declare global {
@@ -21,6 +24,17 @@ declare global {
         delete(id: number): Promise<boolean>;
         create(customerData: CustomerCreateData): Promise<boolean>;
         update(id: number, customerData: CustomerCreateData): Promise<boolean>;
+      };
+      drSecret: {
+        sgProducts: {
+          read(): Promise<DrSecretSGProduct[]>;
+          delete(id: number): Promise<boolean>;
+          create(customerData: DrSecretSGProductCreateData): Promise<boolean>;
+          update(
+            id: number,
+            customerData: DrSecretSGProductCreateData
+          ): Promise<boolean>;
+        };
       };
     };
   }
