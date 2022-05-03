@@ -5,6 +5,7 @@ import Table from 'renderer/views/DrSecret/SGProduct/Table';
 import DrSecretSGProduct, {
   DrSecretSGProductCreateData,
 } from 'shared/types/dr-secret/DrSecretSGProduct';
+import Form from './Form';
 
 const Products = () => {
   const [sgProducts, setSgProducts] = useState<DrSecretSGProduct[]>([]);
@@ -42,7 +43,7 @@ const Products = () => {
     setIsModalOpen(true);
   };
 
-  const updateCustomer = async (
+  const updateSgProduct = async (
     id: number,
     customerData: DrSecretSGProductCreateData
   ) => {
@@ -54,7 +55,11 @@ const Products = () => {
     <div>
       <div className="flex justify-between mb-4">
         <h1 className="text-xl font-bold">Dr. Secret Products</h1>
-        <button type="button" className="btn-primary">
+        <button
+          type="button"
+          className="btn-primary"
+          onClick={() => setIsModalOpen(true)}
+        >
           Create
         </button>
       </div>
@@ -72,12 +77,11 @@ const Products = () => {
           }
           closeModal={() => setIsModalOpen(false)}
         />
-        {/* <Form
+        <Form
           createSgProduct={createSgProduct}
-          sgProductToEdit={customerToEdit}
+          sgProductToEdit={sgProductToEdit}
           updateSgProduct={updateSgProduct}
-        /> */}
-        test
+        />
       </Modal>
     </div>
   );
