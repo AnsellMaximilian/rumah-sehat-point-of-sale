@@ -1,6 +1,7 @@
 import { dialog } from 'electron';
 import { Sequelize } from 'sequelize';
 import { initCustomer } from './models/Customer';
+import { initDrSecretSGProduct } from './models/dr-secret/SGProduct';
 
 export const connectDatabase = async () => {
   const database = new Sequelize('rumah-sehat-pos', 'root', '', {
@@ -22,6 +23,7 @@ export const connectDatabase = async () => {
   }
 
   initCustomer(database);
+  initDrSecretSGProduct(database);
 
   return database;
 };
