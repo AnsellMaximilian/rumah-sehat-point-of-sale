@@ -1,3 +1,5 @@
+import { HTMLInputTypeAttribute } from 'react';
+
 interface Props {
   label: string;
   id: string;
@@ -8,7 +10,7 @@ interface Props {
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
   onChangeTextArea?: React.ChangeEventHandler<HTMLTextAreaElement>;
   textarea?: boolean;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
 }
 
 const TextInput = ({
