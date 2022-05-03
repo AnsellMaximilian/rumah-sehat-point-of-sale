@@ -17,7 +17,7 @@ const Routes = () => {
           <Route path="/customers" element={<CustomersView />} />
           <Route path="/settings" element={<Settings />} />
           <Route
-            path="/dr-secret/products"
+            path="/dr-secret/sg-products"
             element={<DrSecretProductsView />}
           />
         </Route>

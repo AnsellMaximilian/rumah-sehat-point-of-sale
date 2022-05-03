@@ -30,7 +30,7 @@ const Sidebar = () => {
                 </div>
               }
             >
-              <SidebarLink to="/dr-secret/products">Products</SidebarLink>
+              <SidebarLink to="/dr-secret/sg-products">SG Products</SidebarLink>
             </SidebarDropdown>
           </li>
           <li>
