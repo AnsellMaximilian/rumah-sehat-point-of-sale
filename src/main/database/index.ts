@@ -1,6 +1,7 @@
 import { dialog } from 'electron';
 import { Sequelize } from 'sequelize';
 import { initCustomer } from './models/Customer';
+import { initDrSecretIDProduct } from './models/dr-secret/IDProduct';
 import { initDrSecretSGProduct } from './models/dr-secret/SGProduct';
 
 export const connectDatabase = async () => {
@@ -24,6 +25,7 @@ export const connectDatabase = async () => {
 
   initCustomer(database);
   initDrSecretSGProduct(database);
+  initDrSecretIDProduct(database);
 
   return database;
 };

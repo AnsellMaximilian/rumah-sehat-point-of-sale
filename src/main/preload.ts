@@ -1,5 +1,8 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 import Customer, { CustomerCreateData } from 'shared/types/Customer';
+import DrSecretIDProduct, {
+  DrSecretIDProductCreateData,
+} from 'shared/types/dr-secret/DrSecretIDProduct';
 import DrSecretSGProduct, {
   DrSecretSGProductCreateData,
 } from 'shared/types/dr-secret/DrSecretSGProduct';
@@ -72,6 +75,27 @@ contextBridge.exposeInMainWorld('electron', {
           'dr-secret-sg-products:edit',
           id,
           customerData
+        );
+      },
+    },
+    idProducts: {
+      read(): Promise<DrSecretIDProduct[]> {
+        return ipcRenderer.invoke('dr-secret-id-products:read');
+      },
+      delete(id: number): Promise<boolean> {
+        return ipcRenderer.invoke('dr-secret-id-products:delete', id);
+      },
+      create(productData: DrSecretIDProductCreateData): Promise<boolean> {
+        return ipcRenderer.invoke('dr-secret-id-products:create', productData);
+      },
+      update(
+        id: number,
+        productData: DrSecretIDProductCreateData
+      ): Promise<boolean> {
+        return ipcRenderer.invoke(
+          'dr-secret-id-products:edit',
+          id,
+          productData
         );
       },
     },

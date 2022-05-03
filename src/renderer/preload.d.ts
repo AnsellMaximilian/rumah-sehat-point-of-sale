@@ -1,3 +1,6 @@
+import DrSecretIDProduct, {
+  DrSecretIDProductCreateData,
+} from 'shared/types/dr-secret/DrSecretIDProduct';
 import DrSecretSGProduct, {
   DrSecretSGProductCreateData,
 } from 'shared/types/dr-secret/DrSecretSGProduct';
@@ -33,6 +36,15 @@ declare global {
           update(
             id: number,
             customerData: DrSecretSGProductCreateData
+          ): Promise<boolean>;
+        };
+        idProducts: {
+          read(): Promise<DrSecretIDProduct[]>;
+          delete(id: number): Promise<boolean>;
+          create(productData: DrSecretIDProductCreateData): Promise<boolean>;
+          update(
+            id: number,
+            productData: DrSecretIDProductCreateData
           ): Promise<boolean>;
         };
       };
