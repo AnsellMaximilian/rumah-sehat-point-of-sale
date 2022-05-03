@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import Modal from 'renderer/components/Modal';
 import confirm from 'renderer/utils/confirm';
+import Table from 'renderer/views/DrSecret/SGProduct/Table';
 import DrSecretSGProduct, {
   DrSecretSGProductCreateData,
 } from 'shared/types/dr-secret/DrSecretSGProduct';
@@ -56,6 +58,27 @@ const Products = () => {
           Create
         </button>
       </div>
+      <Table
+        sgProducts={sgProducts}
+        editSgProduct={editSgProduct}
+        deleteSgProduct={deleteSgProduct}
+      />
+      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
+        <Modal.Header
+          label={
+            sgProductToEdit
+              ? `Edit Customer of ID ${sgProductToEdit.id}`
+              : 'Create Customer'
+          }
+          closeModal={() => setIsModalOpen(false)}
+        />
+        {/* <Form
+          createSgProduct={createSgProduct}
+          sgProductToEdit={customerToEdit}
+          updateSgProduct={updateSgProduct}
+        /> */}
+        test
+      </Modal>
     </div>
   );
 };
