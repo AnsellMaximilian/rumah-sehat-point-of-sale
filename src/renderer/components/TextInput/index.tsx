@@ -8,6 +8,7 @@ interface Props {
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
   onChangeTextArea?: React.ChangeEventHandler<HTMLTextAreaElement>;
   textarea?: boolean;
+  type?: string;
 }
 
 const TextInput = ({
@@ -20,6 +21,7 @@ const TextInput = ({
   inputClassName,
   textarea,
   onChangeTextArea,
+  type = 'text',
 }: Props) => {
   return (
     <div className={containerClassName}>
@@ -44,6 +46,7 @@ const TextInput = ({
           id={id}
           onChange={onChange}
           value={value}
+          type={type}
         />
       )}
     </div>
@@ -57,6 +60,7 @@ TextInput.defaultProps = {
   containerClassName: undefined,
   inputClassName: undefined,
   textarea: false,
+  type: 'text',
 };
 
 export default TextInput;
