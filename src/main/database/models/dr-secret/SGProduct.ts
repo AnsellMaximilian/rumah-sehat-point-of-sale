@@ -19,7 +19,7 @@ class DrSecretSGProduct extends Model<
 
   declare points: number;
 
-  declare ongkir: number;
+  declare deliveryFee: number;
 
   declare createdAt: CreationOptional<Date>;
 
@@ -49,7 +49,7 @@ export const initDrSecretSGProduct = (database: Sequelize) => {
         allowNull: false,
       },
 
-      ongkir: {
+      deliveryFee: {
         type: DataTypes.NUMBER,
         allowNull: false,
       },
