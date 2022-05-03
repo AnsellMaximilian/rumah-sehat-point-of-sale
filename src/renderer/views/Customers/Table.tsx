@@ -10,40 +10,24 @@ interface Props {
 const Table = ({ customers, deleteCustomer, editCustomer }: Props) => {
   return (
     <div>
-      <table className="min-w-full divide-y divide-gray-200 shadow rounded-lg">
-        <thead className="bg-gray-50">
+      <table>
+        <thead>
           <tr>
-            <th className="uppercase font-medium text-left text-xs px-6 py-4">
-              Id
-            </th>
-            <th className="uppercase font-medium text-left text-xs px-6 py-4">
-              Name
-            </th>
-            <th className="uppercase font-medium text-left text-xs px-6 py-4">
-              Address
-            </th>
-            <th className="uppercase font-medium text-left text-xs px-6 py-4">
-              Phone
-            </th>
-            <th className="uppercase font-medium text-left text-xs px-6 py-4">
-              Actions
-            </th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 bg-white">
+        <tbody>
           {customers.map((cus) => (
             <tr key={cus.id}>
-              <td className="px-6 py-4 text-sm text-cool-gray-900">{cus.id}</td>
-              <td className="px-6 py-4 text-sm text-cool-gray-900">
-                {cus.name}
-              </td>
-              <td className="px-6 py-4 text-sm text-cool-gray-900">
-                {cus.address}
-              </td>
-              <td className="px-6 py-4 text-sm text-cool-gray-900">
-                {cus.phone}
-              </td>
-              <td className="px-6 py-4 text-sm text-cool-gray-900 flex gap-2">
+              <td>{cus.id}</td>
+              <td>{cus.name}</td>
+              <td>{cus.address}</td>
+              <td>{cus.phone}</td>
+              <td className="flex gap-2">
                 <button
                   type="button"
                   className="btn-danger p-2"

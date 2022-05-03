@@ -38,4 +38,24 @@ body {
   .btn-warning {
     @apply btn bg-yellow-400 text-white font-semibold uppercase;
   }
+
+  table {
+    @apply min-w-full divide-y divide-gray-200 shadow rounded-lg;
+  }
+
+  thead {
+    @apply bg-gray-50;
+  }
+
+  th {
+    @apply uppercase font-medium text-left text-xs px-6 py-4;
+  }
+
+  tbody {
+    @apply divide-y divide-gray-200 bg-white;
+  }
+
+  td {
+    @apply px-6 py-4 text-sm text-gray-900;
+  }
 }
