@@ -54,7 +54,7 @@ const Products = () => {
   return (
     <div>
       <div className="flex justify-between mb-4">
-        <h1 className="text-xl font-bold">Dr. Secret Products</h1>
+        <h1 className="text-xl font-bold">Dr. Secret Singaporean Products</h1>
         <button
           type="button"
           className="btn-primary"
@@ -72,8 +72,8 @@ const Products = () => {
         <Modal.Header
           label={
             sgProductToEdit
-              ? `Edit Customer of ID ${sgProductToEdit.id}`
-              : 'Create Customer'
+              ? `Edit Product of ID ${sgProductToEdit.id}`
+              : 'Create Product'
           }
           closeModal={() => setIsModalOpen(false)}
         />
