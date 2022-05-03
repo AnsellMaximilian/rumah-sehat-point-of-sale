@@ -6,7 +6,7 @@ import {
 import MainLayout from 'renderer/layout';
 import Settings from 'renderer/views/Settings';
 import CustomersView from 'renderer/views/Customers';
-import DrSecretProductsView from 'renderer/views/DrSecret/Products';
+import DrSecretProductsView from 'renderer/views/DrSecret/SGProduct';
 
 const Routes = () => {
   return (
