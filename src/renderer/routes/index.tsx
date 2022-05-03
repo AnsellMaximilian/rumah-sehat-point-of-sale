@@ -6,7 +6,8 @@ import {
 import MainLayout from 'renderer/layout';
 import Settings from 'renderer/views/Settings';
 import CustomersView from 'renderer/views/Customers';
-import DrSecretProductsView from 'renderer/views/DrSecret/SGProduct';
+import SGProducts from 'renderer/views/DrSecret/SGProduct';
+import IDProducts from 'renderer/views/DrSecret/IDProduct';
 
 const Routes = () => {
   return (
@@ -16,10 +17,8 @@ const Routes = () => {
           <Route path="/" element={<h1>TETS 1</h1>} />
           <Route path="/customers" element={<CustomersView />} />
           <Route path="/settings" element={<Settings />} />
-          <Route
-            path="/dr-secret/sg-products"
-            element={<DrSecretProductsView />}
-          />
+          <Route path="/dr-secret/sg-products" element={<SGProducts />} />
+          <Route path="/dr-secret/id-products" element={<IDProducts />} />
         </Route>
       </RouteList>
     </Router>
