@@ -4,7 +4,7 @@ interface Props {
   label: string;
   id: string;
   placeholder: string | undefined;
-  value?: string | undefined;
+  value?: string | number | undefined;
   containerClassName?: string | undefined;
   inputClassName?: string | undefined;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
