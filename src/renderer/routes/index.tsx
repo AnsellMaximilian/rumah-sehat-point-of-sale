@@ -8,6 +8,7 @@ import Settings from 'renderer/views/Settings';
 import CustomersView from 'renderer/views/Customers';
 import SGProducts from 'renderer/views/DrSecret/SGProduct';
 import IDProducts from 'renderer/views/DrSecret/IDProduct';
+import { SGInvoiceList } from 'renderer/views/DrSecret/SGInvoice';
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
           <Route path="/settings" element={<Settings />} />
           <Route path="/dr-secret/sg-products" element={<SGProducts />} />
           <Route path="/dr-secret/id-products" element={<IDProducts />} />
+          <Route path="/dr-secret/sg-invoice" element={<SGInvoiceList />} />
         </Route>
       </RouteList>
     </Router>
