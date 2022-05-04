@@ -1,5 +1,3 @@
-import { HTMLInputTypeAttribute } from 'react';
-
 interface Props {
   label: string;
   id: string;
