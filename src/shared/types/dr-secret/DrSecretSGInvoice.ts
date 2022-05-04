@@ -1,6 +1,6 @@
 export interface DrSecretSGInvoiceItem {
   id: number;
-  itemId: number;
+  productId: number;
   points: number;
   priceSGD: number;
   quantity: number;
