@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute } from 'react';
 
 interface Props {
-  label: string;
+  label?: string;
   id: string;
   placeholder: string | undefined;
   value?: string | number | undefined;
@@ -27,9 +27,11 @@ const TextInput = ({
 }: Props) => {
   return (
     <div className={containerClassName}>
-      <label htmlFor={id} className="input-label">
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={id} className="input-label">
+          {label}
+        </label>
+      )}
       {textarea ? (
         <textarea
           className={`${inputClassName} input`}
@@ -53,6 +55,7 @@ const TextInput = ({
 };
 
 TextInput.defaultProps = {
+  label: undefined,
   onChange: undefined,
   onChangeTextArea: undefined,
   value: undefined,
