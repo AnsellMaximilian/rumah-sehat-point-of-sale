@@ -247,7 +247,8 @@
     "react-router-dom": "^6.3.0",
     "react-toastify": "^8.2.0",
     "sequelize": "^6.19.0",
-    "sweetalert2": "^11.4.9"
+    "sweetalert2": "^11.4.9",
+    "uuid": "^8.3.2"
   },
   "devEngines": {
     "node": ">=14.x",
