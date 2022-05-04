@@ -9,7 +9,7 @@ export interface DrSecretSGInvoiceItem {
 }
 
 export interface DrSecretSGInvoiceItemCreateData {
-  itemId: number;
+  productId: number;
   points: number;
   priceSGD: number;
   quantity: number;
