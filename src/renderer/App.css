@@ -39,6 +39,14 @@ body {
     @apply btn bg-yellow-400 text-white font-semibold uppercase;
   }
 
+  .input-label {
+    @apply text-sm mb-1 block font-medium text-gray-700;
+  }
+
+  .input {
+    @apply focus:ring-1 ring-primary outline-none px-2 py-1 rounded-sm min-w-0 border border-gray-300;
+  }
+
   table {
     @apply min-w-full divide-y divide-gray-200 shadow rounded-lg;
   }

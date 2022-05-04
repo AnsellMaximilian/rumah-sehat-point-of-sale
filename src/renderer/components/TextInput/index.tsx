@@ -27,15 +27,12 @@ const TextInput = ({
 }: Props) => {
   return (
     <div className={containerClassName}>
-      <label
-        htmlFor={id}
-        className="text-sm mb-1 block font-medium text-gray-700"
-      >
+      <label htmlFor={id} className="input-label">
         {label}
       </label>
       {textarea ? (
         <textarea
-          className={`${inputClassName} focus:ring-1 ring-primary outline-none px-2 py-1 rounded-sm min-w-0 border border-gray-300`}
+          className={`${inputClassName} input`}
           placeholder={placeholder}
           id={id}
           onChange={onChangeTextArea}
@@ -43,7 +40,7 @@ const TextInput = ({
         />
       ) : (
         <input
-          className={`${inputClassName} focus:ring-1 ring-primary outline-none px-2 py-1 rounded-sm min-w-0 border border-gray-300`}
+          className={`${inputClassName} input`}
           placeholder={placeholder}
           id={id}
           onChange={onChange}
