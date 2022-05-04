@@ -60,6 +60,10 @@ const SGInvoiceForm = () => {
     }
   };
 
+  const deleteProduct = (key: string) => {
+    setInvoiceItems((prev) => prev.filter((item) => item.key !== key));
+  };
+
   return (
     <div>
       <h1>Create Singaporean Form</h1>
@@ -168,7 +172,11 @@ const SGInvoiceForm = () => {
                     <td>{item.quantity * item.points}</td>
                     <td>{item.quantity * item.priceSGD}</td>
                     <td className="flex gap-2">
-                      <button type="button" className="btn-danger p-2">
+                      <button
+                        type="button"
+                        className="btn-danger p-2"
+                        onClick={() => deleteProduct(item.key)}
+                      >
                         <FaTrash />
                       </button>
                     </td>
