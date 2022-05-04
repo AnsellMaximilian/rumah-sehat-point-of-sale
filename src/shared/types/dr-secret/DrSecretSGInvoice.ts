@@ -13,6 +13,5 @@ export interface DrSecretSGInvoiceItemCreateData {
   points: number;
   priceSGD: number;
   quantity: number;
-  sgInvoiceId: number;
   deliveryFee: number | null;
 }
