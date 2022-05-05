@@ -6,6 +6,7 @@ import { DrSecretSGInvoiceItemCreateData } from 'shared/types/dr-secret/DrSecret
 import { FaTrash } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import DrSecretSGProduct from 'shared/types/dr-secret/DrSecretSGProduct';
+import RadioInput from 'renderer/components/RadioInput';
 
 interface WithReactKey {
   key: string;
@@ -19,6 +20,8 @@ const SGInvoiceForm = () => {
     Array<DrSecretSGInvoiceItemCreateData & WithReactKey>
   >([]);
   const [products, setProducts] = useState<DrSecretSGProduct[]>([]);
+  const [isWithCashback, setIsWithCashback] = useState('');
+  const [deliveryFeeMode, setDeliveryFeeMode] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -93,6 +96,43 @@ const SGInvoiceForm = () => {
             type="date"
             onChange={(e) => setDate(e.target.value)}
           />
+          <RadioInput label="Cashback" id="cashback" className="col-span-6">
+            <RadioInput.Button
+              label="Yes"
+              id="cashback-yes"
+              value="yes"
+              checked={isWithCashback === 'yes'}
+              onChange={(e) => setIsWithCashback(e.target.value)}
+            />
+            <RadioInput.Button
+              label="No"
+              id="cashback-no"
+              value="no"
+              checked={isWithCashback === 'no'}
+              onChange={(e) => setIsWithCashback(e.target.value)}
+            />
+          </RadioInput>
+
+          <RadioInput
+            label="Delivery Fee"
+            id="delivery-fee-mode"
+            className="col-span-6"
+          >
+            <RadioInput.Button
+              label="Whole"
+              id="delivery-fee-mode-whole"
+              value="whole"
+              checked={deliveryFeeMode === 'whole'}
+              onChange={(e) => setDeliveryFeeMode(e.target.value)}
+            />
+            <RadioInput.Button
+              label="Individual"
+              id="delivery-fee-mode-individual"
+              value="individual"
+              checked={deliveryFeeMode === 'individual'}
+              onChange={(e) => setDeliveryFeeMode(e.target.value)}
+            />
+          </RadioInput>
           <div className="col-span-12">
             <div className="flex justify-between items-center mb-4">
               <h2>Products</h2>
