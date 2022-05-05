@@ -3,17 +3,30 @@ import TextInput from 'renderer/components/TextInput';
 import useSettings from 'renderer/hooks/useSettings';
 
 const Settings = () => {
+  // General Settings
   const appName = useSettings('app-name');
   const dbUser = useSettings('db-user');
   const dbPort = useSettings('db-port');
   const dbName = useSettings('db-name');
+  const exchangeRateSGDToRP = useSettings('exchange-rate-sgd-rp');
+  const sgCashbackPercentage = useSettings('sg-cashback-percentage');
+  const sgCashbackMultiplier = useSettings('sg-cashback-multiplier');
+  const sgCashbackPointReducer = useSettings('sg-cashback-point-reducer');
 
   const handleSave: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+    // General Settings
     appName.save();
     dbName.save();
     dbPort.save();
     dbUser.save();
+
+    // Dr. Secret
+    exchangeRateSGDToRP.save();
+    sgCashbackPercentage.save();
+    sgCashbackMultiplier.save();
+    sgCashbackPointReducer.save();
+
     toast.success('Settings saved');
   };
 
@@ -36,6 +49,7 @@ const Settings = () => {
             />
           </div>
         </div>
+
         <div>
           <h2 className="text-lg font-semibold pb-2 border-b-2 border-primary mb-2">
             Database
@@ -65,6 +79,65 @@ const Settings = () => {
               value={dbPort.value || ''}
               onChange={(e) => dbPort.setValue(e.target.value)}
             />
+          </div>
+        </div>
+        <div>
+          <h2 className="text-lg font-semibold pb-2 border-b-2 border-primary mb-2">
+            Dr. Secret
+          </h2>
+          <div className="grid grid-cols-12 gap-2">
+            <TextInput
+              label="Exchange Rate (SGD to RP)"
+              id="exchange-rate-sgd-rp"
+              placeholder="Exchange Rate (SGD to RP)"
+              containerClassName="col-span-12"
+              value={exchangeRateSGDToRP.value || ''}
+              onChange={(e) => exchangeRateSGDToRP.setValue(e.target.value)}
+            />
+            <div className="col-span-12">
+              <div className="input-label">SG Discount Model</div>
+              <div className="flex gap-2 items-center">
+                <div>(</div>
+
+                <div>Total Points</div>
+                <div>-</div>
+
+                <TextInput
+                  id="sg-cashback-point-reducer"
+                  placeholder="SG Cashback Point Reducer"
+                  containerClassName="col-span-4"
+                  value={sgCashbackPointReducer.value || ''}
+                  onChange={(e) =>
+                    sgCashbackPointReducer.setValue(e.target.value)
+                  }
+                />
+                <div>)</div>
+                <div>*</div>
+
+                <TextInput
+                  id="sg-cashback-multiplier"
+                  placeholder="SG Cashback Multiplier"
+                  containerClassName="col-span-4"
+                  value={sgCashbackMultiplier.value || ''}
+                  onChange={(e) =>
+                    sgCashbackMultiplier.setValue(e.target.value)
+                  }
+                />
+
+                <div className="flex gap-1 items-center">
+                  <TextInput
+                    id="sg-cashback-percentage"
+                    placeholder="SG Cashback Percentage"
+                    containerClassName="col-span-4"
+                    value={sgCashbackPercentage.value || ''}
+                    onChange={(e) =>
+                      sgCashbackPercentage.setValue(e.target.value)
+                    }
+                  />
+                  <div>%</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex">
