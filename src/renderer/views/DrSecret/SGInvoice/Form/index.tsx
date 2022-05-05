@@ -96,7 +96,12 @@ const SGInvoiceForm = () => {
             type="date"
             onChange={(e) => setDate(e.target.value)}
           />
-          <RadioInput label="Cashback" id="cashback" className="col-span-6">
+          <RadioInput
+            label="Cashback"
+            id="cashback"
+            className="col-span-6 "
+            containerClassName="flex gap-2"
+          >
             <RadioInput.Button
               label="Yes"
               id="cashback-yes"
@@ -116,7 +121,8 @@ const SGInvoiceForm = () => {
           <RadioInput
             label="Delivery Fee"
             id="delivery-fee-mode"
-            className="col-span-6"
+            className="col-span-6 "
+            containerClassName="flex gap-2"
           >
             <RadioInput.Button
               label="Whole"
