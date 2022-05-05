@@ -6,6 +6,7 @@ interface Props {
   label?: string;
   id: string;
   className?: string | undefined;
+  containerClassName?: string | undefined;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
   children: React.ReactNode;
 }
@@ -18,6 +19,7 @@ const RadioInput: React.FC<Props> & RadioInputComposition = ({
   label,
   id,
   className,
+  containerClassName,
   children,
 }) => {
   return (
@@ -27,7 +29,7 @@ const RadioInput: React.FC<Props> & RadioInputComposition = ({
           {label}
         </label>
       )}
-      {children}
+      <div className={containerClassName}>{children}</div>
     </div>
   );
 };
@@ -37,11 +39,13 @@ RadioInput.Button = Button;
 RadioInput.defaultProps = {
   label: undefined,
   className: undefined,
+  containerClassName: undefined,
 };
 
 RadioInput.propTypes = {
   label: PropTypes.string,
   className: PropTypes.string,
+  containerClassName: PropTypes.string,
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
