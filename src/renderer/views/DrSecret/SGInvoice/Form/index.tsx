@@ -5,9 +5,9 @@ import Customer from 'shared/types/Customer';
 import {
   DrSecretSGInvoiceItemCreateData,
   DrSecretSGInvoiceDeliveryFeeMode,
-  DrSecretSGInvoiceDeliveryFeeModeWhole,
-  DrSecretSGInvoiceDeliveryFeeModeIndividual,
 } from 'shared/types/dr-secret/DrSecretSGInvoice';
+
+import { deliveryFeeConstants } from 'shared/constants';
 import { FaTrash } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import DrSecretSGProduct from 'shared/types/dr-secret/DrSecretSGProduct';
@@ -17,14 +17,6 @@ import useSettings from 'renderer/hooks/useSettings';
 interface WithReactKey {
   key: string;
 }
-
-const deliveryFeeConstants: {
-  WHOLE: DrSecretSGInvoiceDeliveryFeeModeWhole;
-  INDIVIDUAL: DrSecretSGInvoiceDeliveryFeeModeIndividual;
-} = {
-  WHOLE: 'whole',
-  INDIVIDUAL: 'individual',
-};
 
 const filterDeliveryMode = (mode: string): DrSecretSGInvoiceDeliveryFeeMode => {
   return mode === 'whole' || mode === 'individual' ? mode : 'individual';
