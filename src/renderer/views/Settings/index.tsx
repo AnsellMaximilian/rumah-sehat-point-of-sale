@@ -96,7 +96,7 @@ const Settings = () => {
             />
             <div className="col-span-12">
               <div className="input-label">SG Discount Model</div>
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center max-w-full">
                 <div>(</div>
 
                 <div>Total Points</div>
@@ -105,8 +105,8 @@ const Settings = () => {
                 <TextInput
                   id="sg-cashback-point-reducer"
                   placeholder="SG Cashback Point Reducer"
-                  containerClassName="col-span-4"
                   value={sgCashbackPointReducer.value || ''}
+                  inputClassName="w-full"
                   onChange={(e) =>
                     sgCashbackPointReducer.setValue(e.target.value)
                   }
@@ -117,8 +117,8 @@ const Settings = () => {
                 <TextInput
                   id="sg-cashback-multiplier"
                   placeholder="SG Cashback Multiplier"
-                  containerClassName="col-span-4"
                   value={sgCashbackMultiplier.value || ''}
+                  inputClassName="w-full"
                   onChange={(e) =>
                     sgCashbackMultiplier.setValue(e.target.value)
                   }
@@ -128,8 +128,8 @@ const Settings = () => {
                   <TextInput
                     id="sg-cashback-percentage"
                     placeholder="SG Cashback Percentage"
-                    containerClassName="col-span-4"
                     value={sgCashbackPercentage.value || ''}
+                    inputClassName="w-full"
                     onChange={(e) =>
                       sgCashbackPercentage.setValue(e.target.value)
                     }
