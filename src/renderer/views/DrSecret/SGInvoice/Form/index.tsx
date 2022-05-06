@@ -14,6 +14,7 @@ import RadioInput from 'renderer/components/RadioInput';
 import useSettings from 'renderer/hooks/useSettings';
 import { WithReactKey } from 'shared/types/general';
 import ProductList from './ProductList';
+import Footer from './Footer';
 
 const filterDeliveryMode = (mode: string): DrSecretSGInvoiceDeliveryFeeMode => {
   return mode === 'whole' || mode === 'individual' ? mode : 'individual';
@@ -174,6 +175,9 @@ const SGInvoiceForm = () => {
               invoiceItems={invoiceItems}
               setInvoiceItems={setInvoiceItems}
             />
+          </div>
+          <div className="col-span-12">
+            <Footer invoiceItems={invoiceItems} />
           </div>
         </form>
       </div>
