@@ -1,3 +1,4 @@
+import { No, Yes } from 'shared/types/general';
 import {
   DrSecretSGInvoiceDeliveryFeeModeWhole,
   DrSecretSGInvoiceDeliveryFeeModeIndividual,
@@ -11,7 +12,5 @@ export const deliveryFeeConstants: {
   INDIVIDUAL: 'individual',
 };
 
-export const affirmationConstants = {
-  YES: 'yes',
-  NO: 'no',
-};
+export const YES: Yes = 'yes';
+export const NO: No = 'no';
