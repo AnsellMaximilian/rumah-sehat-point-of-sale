@@ -12,6 +12,7 @@ import { FaTrash } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import DrSecretSGProduct from 'shared/types/dr-secret/DrSecretSGProduct';
 import RadioInput from 'renderer/components/RadioInput';
+import useSettings from 'renderer/hooks/useSettings';
 
 interface WithReactKey {
   key: string;
@@ -40,6 +41,8 @@ const SGInvoiceForm = () => {
   const [isWithCashback, setIsWithCashback] = useState('');
   const [deliveryFeeMode, setDeliveryFeeMode] =
     useState<DrSecretSGInvoiceDeliveryFeeMode>('individual');
+
+  const exchangeRateSGDToRP = useSettings('exchange-rate-sgd-rp');
 
   useEffect(() => {
     (async () => {
@@ -169,6 +172,10 @@ const SGInvoiceForm = () => {
               }
             />
           </RadioInput>
+          <div className="col-span-12">
+            Exchange Rate:{' '}
+            <span className="font-semibold">{exchangeRateSGDToRP.value}</span>
+          </div>
           <div className="col-span-12">
             <div className="flex justify-between items-center mb-4">
               <h2>Products</h2>
