@@ -7,13 +7,13 @@ import {
   DrSecretSGInvoiceDeliveryFeeMode,
 } from 'shared/types/dr-secret/DrSecretSGInvoice';
 
-import { deliveryFeeConstants } from 'shared/constants';
-import { filterDeliveryMode } from 'shared/helpers';
+import { deliveryFeeConstants, NO, YES } from 'shared/constants';
+import { filterDeliveryMode, filterYesOrNo } from 'shared/helpers';
 import { v4 as uuidv4 } from 'uuid';
 import DrSecretSGProduct from 'shared/types/dr-secret/DrSecretSGProduct';
 import RadioInput from 'renderer/components/RadioInput';
 import useSettings from 'renderer/hooks/useSettings';
-import { WithReactKey } from 'shared/types/general';
+import { WithReactKey, YesOrNo } from 'shared/types/general';
 import ProductList from './ProductList';
 import Footer from './Footer';
 
@@ -25,7 +25,7 @@ const SGInvoiceForm = () => {
     Array<DrSecretSGInvoiceItemCreateData & WithReactKey>
   >([]);
   const [products, setProducts] = useState<DrSecretSGProduct[]>([]);
-  const [isWithCashback, setIsWithCashback] = useState('');
+  const [isWithCashback, setIsWithCashback] = useState<YesOrNo>('no');
   const [deliveryFeeMode, setDeliveryFeeMode] =
     useState<DrSecretSGInvoiceDeliveryFeeMode>('individual');
 
@@ -122,15 +122,15 @@ const SGInvoiceForm = () => {
               label="Yes"
               id="cashback-yes"
               value="yes"
-              checked={isWithCashback === 'yes'}
-              onChange={(e) => setIsWithCashback(e.target.value)}
+              checked={isWithCashback === YES}
+              onChange={(e) => setIsWithCashback(filterYesOrNo(e.target.value))}
             />
             <RadioInput.Button
               label="No"
               id="cashback-no"
               value="no"
-              checked={isWithCashback === 'no'}
-              onChange={(e) => setIsWithCashback(e.target.value)}
+              checked={isWithCashback === NO}
+              onChange={(e) => setIsWithCashback(filterYesOrNo(e.target.value))}
             />
           </RadioInput>
 
