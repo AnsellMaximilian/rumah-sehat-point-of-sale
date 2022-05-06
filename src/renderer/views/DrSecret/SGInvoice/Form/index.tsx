@@ -2,7 +2,12 @@ import TextInput from 'renderer/components/TextInput';
 import { useEffect, useState } from 'react';
 import SelectInput from 'renderer/components/SelectInput';
 import Customer from 'shared/types/Customer';
-import { DrSecretSGInvoiceItemCreateData } from 'shared/types/dr-secret/DrSecretSGInvoice';
+import {
+  DrSecretSGInvoiceItemCreateData,
+  DrSecretSGInvoiceDeliveryFeeMode,
+  DrSecretSGInvoiceDeliveryFeeModeWhole,
+  DrSecretSGInvoiceDeliveryFeeModeIndividual,
+} from 'shared/types/dr-secret/DrSecretSGInvoice';
 import { FaTrash } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import DrSecretSGProduct from 'shared/types/dr-secret/DrSecretSGProduct';
@@ -11,6 +16,18 @@ import RadioInput from 'renderer/components/RadioInput';
 interface WithReactKey {
   key: string;
 }
+
+const deliveryFeeConstants: {
+  WHOLE: DrSecretSGInvoiceDeliveryFeeModeWhole;
+  INDIVIDUAL: DrSecretSGInvoiceDeliveryFeeModeIndividual;
+} = {
+  WHOLE: 'whole',
+  INDIVIDUAL: 'individual',
+};
+
+const filterDeliveryMode = (mode: string): DrSecretSGInvoiceDeliveryFeeMode => {
+  return mode === 'whole' || mode === 'individual' ? mode : 'individual';
+};
 
 const SGInvoiceForm = () => {
   const [date, setDate] = useState('');
@@ -21,7 +38,8 @@ const SGInvoiceForm = () => {
   >([]);
   const [products, setProducts] = useState<DrSecretSGProduct[]>([]);
   const [isWithCashback, setIsWithCashback] = useState('');
-  const [deliveryFeeMode, setDeliveryFeeMode] = useState('');
+  const [deliveryFeeMode, setDeliveryFeeMode] =
+    useState<DrSecretSGInvoiceDeliveryFeeMode>('individual');
 
   useEffect(() => {
     (async () => {
@@ -37,7 +55,7 @@ const SGInvoiceForm = () => {
       prev.map((item) => {
         const product = products.find((prod) => prod.id === item.productId);
         let deliveryFee: null | number = product ? product.deliveryFee : null;
-        if (deliveryFeeMode === 'whole') {
+        if (deliveryFeeMode === deliveryFeeConstants.WHOLE) {
           deliveryFee = null;
         }
         return {
@@ -62,7 +80,9 @@ const SGInvoiceForm = () => {
             priceSGD: products[0].priceSGD,
             quantity: 0,
             deliveryFee:
-              deliveryFeeMode === 'individual' ? products[0].deliveryFee : null,
+              deliveryFeeMode === deliveryFeeConstants.INDIVIDUAL
+                ? products[0].deliveryFee
+                : null,
           },
         ];
       });
@@ -133,16 +153,20 @@ const SGInvoiceForm = () => {
             <RadioInput.Button
               label="Whole"
               id="delivery-fee-mode-whole"
-              value="whole"
-              checked={deliveryFeeMode === 'whole'}
-              onChange={(e) => setDeliveryFeeMode(e.target.value)}
+              value={deliveryFeeConstants.WHOLE}
+              checked={deliveryFeeMode === deliveryFeeConstants.WHOLE}
+              onChange={(e) =>
+                setDeliveryFeeMode(filterDeliveryMode(e.target.value))
+              }
             />
             <RadioInput.Button
               label="Individual"
               id="delivery-fee-mode-individual"
-              value="individual"
-              checked={deliveryFeeMode === 'individual'}
-              onChange={(e) => setDeliveryFeeMode(e.target.value)}
+              value={deliveryFeeConstants.INDIVIDUAL}
+              checked={deliveryFeeMode === deliveryFeeConstants.INDIVIDUAL}
+              onChange={(e) =>
+                setDeliveryFeeMode(filterDeliveryMode(e.target.value))
+              }
             />
           </RadioInput>
           <div className="col-span-12">
@@ -162,11 +186,13 @@ const SGInvoiceForm = () => {
                   <th>Product</th>
                   <th>Points</th>
                   <th>Price (SGD)</th>
-                  {deliveryFeeMode === 'individual' && <th>Delivery</th>}
+                  {deliveryFeeMode === deliveryFeeConstants.INDIVIDUAL && (
+                    <th>Delivery</th>
+                  )}
                   <th>Qty</th>
                   <th>Points Subtotal</th>
                   <th>Price Subtotal</th>
-                  {deliveryFeeMode === 'individual' && (
+                  {deliveryFeeMode === deliveryFeeConstants.INDIVIDUAL && (
                     <th>Delivery Subtotal</th>
                   )}
                   <th>Action</th>
@@ -203,7 +229,7 @@ const SGInvoiceForm = () => {
                     </td>
                     <td>{item.points}</td>
                     <td>{item.priceSGD}</td>
-                    {deliveryFeeMode === 'individual' && (
+                    {deliveryFeeMode === deliveryFeeConstants.INDIVIDUAL && (
                       <td>{item.deliveryFee}</td>
                     )}
                     <td>

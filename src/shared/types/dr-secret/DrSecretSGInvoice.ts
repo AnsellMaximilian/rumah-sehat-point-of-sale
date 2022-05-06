@@ -15,3 +15,10 @@ export interface DrSecretSGInvoiceItemCreateData {
   quantity: number;
   deliveryFee: number | null;
 }
+
+export type DrSecretSGInvoiceDeliveryFeeModeIndividual = 'individual';
+export type DrSecretSGInvoiceDeliveryFeeModeWhole = 'whole';
+
+export type DrSecretSGInvoiceDeliveryFeeMode =
+  | DrSecretSGInvoiceDeliveryFeeModeIndividual
+  | DrSecretSGInvoiceDeliveryFeeModeWhole;
