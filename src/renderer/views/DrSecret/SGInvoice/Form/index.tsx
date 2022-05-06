@@ -36,14 +36,19 @@ const SGInvoiceForm = () => {
     setInvoiceItems((prev) =>
       prev.map((item) => {
         const product = products.find((prod) => prod.id === item.productId);
+        let deliveryFee: null | number = product ? product.deliveryFee : null;
+        if (deliveryFeeMode === 'whole') {
+          deliveryFee = null;
+        }
         return {
           ...item,
           points: product ? product.points : 0,
           priceSGD: product ? product.priceSGD : 0,
+          deliveryFee,
         };
       })
     );
-  }, [invoiceItems, products]);
+  }, [invoiceItems, products, deliveryFeeMode]);
 
   const addProduct = () => {
     if (products.length > 0) {
@@ -56,7 +61,8 @@ const SGInvoiceForm = () => {
             points: products[0].points,
             priceSGD: products[0].priceSGD,
             quantity: 0,
-            deliveryFee: null,
+            deliveryFee:
+              deliveryFeeMode === 'individual' ? products[0].deliveryFee : null,
           },
         ];
       });
@@ -156,9 +162,13 @@ const SGInvoiceForm = () => {
                   <th>Product</th>
                   <th>Points</th>
                   <th>Price (SGD)</th>
+                  {deliveryFeeMode === 'individual' && <th>Delivery</th>}
                   <th>Qty</th>
                   <th>Points Subtotal</th>
                   <th>Price Subtotal</th>
+                  {deliveryFeeMode === 'individual' && (
+                    <th>Delivery Subtotal</th>
+                  )}
                   <th>Action</th>
                 </tr>
               </thead>
@@ -193,6 +203,9 @@ const SGInvoiceForm = () => {
                     </td>
                     <td>{item.points}</td>
                     <td>{item.priceSGD}</td>
+                    {deliveryFeeMode === 'individual' && (
+                      <td>{item.deliveryFee}</td>
+                    )}
                     <td>
                       <TextInput
                         id={`invoice-item-qty-${item.key}`}
@@ -217,6 +230,13 @@ const SGInvoiceForm = () => {
                     </td>
                     <td>{item.quantity * item.points}</td>
                     <td>{item.quantity * item.priceSGD}</td>
+                    {deliveryFeeMode === 'individual' && (
+                      <td>
+                        {item.quantity *
+                          (item.deliveryFee ? item.deliveryFee : 0)}
+                      </td>
+                    )}
+
                     <td className="flex gap-2">
                       <button
                         type="button"
