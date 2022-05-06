@@ -52,8 +52,8 @@ const Form = ({ createSgProduct, updateSgProduct, sgProductToEdit }: Props) => {
       <form onSubmit={onSubmit} className="p-4 grid grid-cols-12 gap-2">
         <TextInput
           label="Name"
-          id="customer-name"
-          placeholder="Customer Name"
+          id="sg-product-name"
+          placeholder="Product Name"
           containerClassName="col-span-6"
           inputClassName="w-full"
           value={name}
