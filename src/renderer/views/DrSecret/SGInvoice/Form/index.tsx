@@ -12,11 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
 import DrSecretSGProduct from 'shared/types/dr-secret/DrSecretSGProduct';
 import RadioInput from 'renderer/components/RadioInput';
 import useSettings from 'renderer/hooks/useSettings';
+import { WithReactKey } from 'shared/types/general';
 import ProductList from './ProductList';
-
-interface WithReactKey {
-  key: string;
-}
 
 const filterDeliveryMode = (mode: string): DrSecretSGInvoiceDeliveryFeeMode => {
   return mode === 'whole' || mode === 'individual' ? mode : 'individual';
