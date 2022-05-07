@@ -85,7 +85,7 @@ const SGInvoiceForm = () => {
 
   return (
     <div>
-      <h1>Create Singaporean Form</h1>
+      <h1 className="text-xl font-bold mb-4">Create Singaporean Form</h1>
       <div>
         <form className="grid grid-cols-12 gap-4">
           <SelectInput
