@@ -14,8 +14,8 @@ const Footer = ({ invoiceItems, isWithCashback }: Props) => {
 
   return (
     <div>
-      <div>
-        <div>Total Price (SGD):</div>
+      <div className="flex justify-between">
+        <div>Total Price (SGD)</div>
         <div>
           {invoiceItems.reduce(
             (total, item) => total + item.priceSGD * item.quantity,
@@ -23,38 +23,46 @@ const Footer = ({ invoiceItems, isWithCashback }: Props) => {
           )}
         </div>
       </div>
-      <div>
-        Total Price (RP):{' '}
-        {invoiceItems.reduce(
-          (total, item) => total + item.priceSGD * item.quantity,
-          0
-        ) * Number(exchangeRateSGDToRP.value)}
-      </div>
-      <div>
-        Total Delivery Fee (RP):{' '}
-        {invoiceItems.reduce(
-          (total, item) =>
-            total + (item.deliveryFee ? item.deliveryFee : 0) * item.quantity,
-          0
-        )}
-      </div>
-      <div>
-        Total Points:{' '}
-        {invoiceItems.reduce(
-          (total, item) => total + item.points * item.quantity,
-          0
-        )}
-      </div>
-      {isWithCashback && (
+      <div className="flex justify-between">
+        <div>Total Price (RP)</div>
         <div>
-          Total Cashback:{' '}
-          {(invoiceItems.reduce(
+          {invoiceItems.reduce(
+            (total, item) => total + item.priceSGD * item.quantity,
+            0
+          ) * Number(exchangeRateSGDToRP.value)}
+        </div>
+      </div>
+      <div className="flex justify-between">
+        <div>Total Delivery Fee (RP)</div>
+        <div>
+          {invoiceItems.reduce(
+            (total, item) =>
+              total + (item.deliveryFee ? item.deliveryFee : 0) * item.quantity,
+            0
+          )}
+        </div>
+      </div>
+      <div className="flex justify-between">
+        <div>Total Points</div>
+        <div>
+          {invoiceItems.reduce(
             (total, item) => total + item.points * item.quantity,
             0
-          ) -
-            sgCashbackPointReducer.value) *
-            sgCashbackMultiplier.value *
-            (sgCashbackPercentage.value / 100)}
+          )}
+        </div>
+      </div>
+      {isWithCashback && (
+        <div className="flex justify-between">
+          <div>Total Cashback:</div>
+          <div>
+            {(invoiceItems.reduce(
+              (total, item) => total + item.points * item.quantity,
+              0
+            ) -
+              sgCashbackPointReducer.value) *
+              sgCashbackMultiplier.value *
+              (sgCashbackPercentage.value / 100)}
+          </div>
         </div>
       )}
     </div>
