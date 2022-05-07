@@ -174,7 +174,10 @@ const SGInvoiceForm = () => {
             />
           </div>
           <div className="col-span-12">
-            <Footer invoiceItems={invoiceItems} />
+            <Footer
+              invoiceItems={invoiceItems}
+              isWithCashback={isWithCashback === YES}
+            />
           </div>
         </form>
       </div>

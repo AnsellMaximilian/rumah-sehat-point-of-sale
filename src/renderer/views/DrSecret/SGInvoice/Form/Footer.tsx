@@ -4,9 +4,13 @@ import useSettings from 'renderer/hooks/useSettings';
 
 interface Props {
   invoiceItems: Array<DrSecretSGInvoiceItemCreateData & WithReactKey>;
+  isWithCashback: boolean;
 }
-const Footer = ({ invoiceItems }: Props) => {
+const Footer = ({ invoiceItems, isWithCashback }: Props) => {
   const exchangeRateSGDToRP = useSettings('exchange-rate-sgd-rp');
+  const sgCashbackPercentage = useSettings('sg-cashback-percentage');
+  const sgCashbackMultiplier = useSettings('sg-cashback-multiplier');
+  const sgCashbackPointReducer = useSettings('sg-cashback-point-reducer');
 
   return (
     <div>
@@ -41,6 +45,18 @@ const Footer = ({ invoiceItems }: Props) => {
           0
         )}
       </div>
+      {isWithCashback && (
+        <div>
+          Total Cashback:{' '}
+          {(invoiceItems.reduce(
+            (total, item) => total + item.points * item.quantity,
+            0
+          ) -
+            sgCashbackPointReducer.value) *
+            sgCashbackMultiplier.value *
+            (sgCashbackPercentage.value / 100)}
+        </div>
+      )}
     </div>
   );
 };
