@@ -1,16 +1,12 @@
 import { DrSecretSGInvoiceItemCreateData } from 'shared/types/dr-secret/DrSecretSGInvoice';
 import { WithReactKey } from 'shared/types/general';
 import useSettings from 'renderer/hooks/useSettings';
-import drSecret from 'shared/helpers/dr-secret';
-
-const {
-  sg: {
-    calcTotalPriceSGD,
-    calcTotalPriceRP,
-    calcTotalDeliveryFee,
-    calcTotalCashback,
-  },
-} = drSecret;
+import {
+  calcTotalPriceSGD,
+  calcTotalPriceRP,
+  calcTotalDeliveryFee,
+  calcTotalCashback,
+} from 'shared/helpers/dr-secret/sg';
 
 const FooterItem = ({
   label,
