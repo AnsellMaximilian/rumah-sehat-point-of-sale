@@ -1,6 +1,16 @@
 import { DrSecretSGInvoiceItemCreateData } from 'shared/types/dr-secret/DrSecretSGInvoice';
 import { WithReactKey } from 'shared/types/general';
 import useSettings from 'renderer/hooks/useSettings';
+import drSecret from 'shared/helpers/dr-secret';
+
+const {
+  sg: {
+    calcTotalPriceSGD,
+    calcTotalPriceRP,
+    calcTotalDeliveryFee,
+    calcTotalCashback,
+  },
+} = drSecret;
 
 const FooterItem = ({
   label,
@@ -29,28 +39,19 @@ const Footer = ({ invoiceItems, isWithCashback }: Props) => {
     <div>
       <FooterItem
         label="Total Price (SGD)"
-        value={invoiceItems.reduce(
-          (total, item) => total + item.priceSGD * item.quantity,
-          0
-        )}
+        value={calcTotalPriceSGD(invoiceItems)}
       />
       <FooterItem
         label="Total Price (RP)"
-        value={
-          invoiceItems.reduce(
-            (total, item) => total + item.priceSGD * item.quantity,
-            0
-          ) * Number(exchangeRateSGDToRP.value)
-        }
+        value={calcTotalPriceRP(
+          invoiceItems,
+          Number(exchangeRateSGDToRP.value)
+        )}
       />
 
       <FooterItem
         label="Total Delivery Fee (RP)"
-        value={invoiceItems.reduce(
-          (total, item) =>
-            total + (item.deliveryFee ? item.deliveryFee : 0) * item.quantity,
-          0
-        )}
+        value={calcTotalDeliveryFee(invoiceItems)}
       />
       <FooterItem
         label="Total Points"
@@ -62,15 +63,11 @@ const Footer = ({ invoiceItems, isWithCashback }: Props) => {
       {isWithCashback && (
         <FooterItem
           label="Total Cashback"
-          value={
-            (invoiceItems.reduce(
-              (total, item) => total + item.points * item.quantity,
-              0
-            ) -
-              sgCashbackPointReducer.value) *
-            sgCashbackMultiplier.value *
-            (sgCashbackPercentage.value / 100)
-          }
+          value={calcTotalCashback(invoiceItems, {
+            reducer: Number(sgCashbackPointReducer.value),
+            multiplier: Number(sgCashbackMultiplier.value),
+            percentage: Number(sgCashbackPercentage.value),
+          })}
         />
       )}
     </div>
