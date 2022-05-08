@@ -173,7 +173,7 @@ const SGInvoiceForm = () => {
               setInvoiceItems={setInvoiceItems}
             />
           </div>
-          <div className="col-span-6 md:col-start-6">
+          <div className="col-span-6 md:col-start-7">
             <Footer
               invoiceItems={invoiceItems}
               isWithCashback={isWithCashback === YES}
