@@ -8,7 +8,7 @@ import {
 } from 'shared/types/dr-secret/DrSecretSGInvoice';
 
 import { deliveryFeeConstants, NO, YES } from 'shared/constants';
-import { filterDeliveryMode, filterYesOrNo } from 'shared/helpers';
+import { filterDeliveryMode, filterYesOrNo } from 'shared/helpers/general';
 import { v4 as uuidv4 } from 'uuid';
 import DrSecretSGProduct from 'shared/types/dr-secret/DrSecretSGProduct';
 import RadioInput from 'renderer/components/RadioInput';
