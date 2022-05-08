@@ -47,3 +47,22 @@ export const calcTotalCashback = (
     (percentage / 100)
   );
 };
+
+export const calcGrandTotal = (
+  invoiceItems: InvoiceItems,
+  exchangeRate: number,
+  isWithCashback: boolean,
+  cashback?: DrSecretSGInvoiceCashback
+) => {
+  let grandTotal =
+    calcTotalPriceRP(invoiceItems, exchangeRate) +
+    calcTotalDeliveryFee(invoiceItems);
+  if (isWithCashback) {
+    if (cashback) {
+      grandTotal -= calcTotalCashback(invoiceItems, cashback);
+    } else {
+      throw Error('Cashback object required');
+    }
+  }
+  return grandTotal;
+};

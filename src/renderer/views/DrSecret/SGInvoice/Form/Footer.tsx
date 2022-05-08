@@ -6,6 +6,7 @@ import {
   calcTotalPriceRP,
   calcTotalDeliveryFee,
   calcTotalCashback,
+  calcGrandTotal,
 } from 'shared/helpers/dr-secret/sg';
 
 const FooterItem = ({
@@ -66,6 +67,19 @@ const Footer = ({ invoiceItems, isWithCashback }: Props) => {
           })}
         />
       )}
+      <FooterItem
+        label="Grand Total"
+        value={calcGrandTotal(
+          invoiceItems,
+          Number(exchangeRateSGDToRP.value),
+          isWithCashback,
+          {
+            reducer: Number(sgCashbackPointReducer.value),
+            multiplier: Number(sgCashbackMultiplier.value),
+            percentage: Number(sgCashbackPercentage.value),
+          }
+        )}
+      />
     </div>
   );
 };
