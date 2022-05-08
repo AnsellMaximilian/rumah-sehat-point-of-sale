@@ -16,7 +16,7 @@ const FooterItem = ({
   label: string;
   value: string | number;
 }) => (
-  <div className="flex justify-between">
+  <div className="flex justify-between p-2">
     <div>{label}</div>
     <div>{value}</div>
   </div>
@@ -33,7 +33,7 @@ const Footer = ({ invoiceItems, isWithCashback }: Props) => {
   const sgCashbackPointReducer = useSettings('sg-cashback-point-reducer');
 
   return (
-    <div>
+    <div className="bg-white shadow rounded-lg">
       <FooterItem
         label="Total Price (SGD)"
         value={calcTotalPriceSGD(invoiceItems)}
