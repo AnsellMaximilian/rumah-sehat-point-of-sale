@@ -1,4 +1,7 @@
-import { DrSecretSGInvoiceItemCreateData } from 'shared/types/dr-secret/DrSecretSGInvoice';
+import {
+  DrSecretSGInvoiceCashback,
+  DrSecretSGInvoiceItemCreateData,
+} from 'shared/types/dr-secret/DrSecretSGInvoice';
 import { WithReactKey } from 'shared/types/general';
 
 type InvoiceItems = Array<
@@ -32,11 +35,7 @@ export const calcTotalDeliveryFee = (invoiceItems: InvoiceItems) => {
 };
 export const calcTotalCashback = (
   invoiceItems: InvoiceItems,
-  {
-    reducer,
-    percentage,
-    multiplier,
-  }: { reducer: number; percentage: number; multiplier: number }
+  { reducer, percentage, multiplier }: DrSecretSGInvoiceCashback
 ) => {
   return (
     (invoiceItems.reduce(

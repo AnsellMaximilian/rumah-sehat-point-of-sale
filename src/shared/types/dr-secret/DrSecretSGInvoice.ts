@@ -22,3 +22,9 @@ export type DrSecretSGInvoiceDeliveryFeeModeWhole = 'whole';
 export type DrSecretSGInvoiceDeliveryFeeMode =
   | DrSecretSGInvoiceDeliveryFeeModeIndividual
   | DrSecretSGInvoiceDeliveryFeeModeWhole;
+
+export interface DrSecretSGInvoiceCashback {
+  reducer: number;
+  percentage: number;
+  multiplier: number;
+}
